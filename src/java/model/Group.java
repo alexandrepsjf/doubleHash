@@ -43,9 +43,14 @@ public class Group {
 
     public String getGrupo() {
         String result = this.name + " = { ";
-        for (Element e : this.group) {
-            result = result + e.getName() + ",";
+        for (int i = 0; this.group.size() > i; i++) {
+            if (i > 0) {
+                result += ",";
+            }
+            result = result + this.getGroup().get(i).getName();
+
         }
+
         return result + "}";
     }
 
@@ -106,10 +111,14 @@ public class Group {
         String cartesiano = this.name + "cartesiano" + conjunto.name;
         cartesiano += "={";
         for (int i = 0; i < this.group.size(); i++) {
+
             for (int j = 0; j < conjunto.group.size(); j++) {
+                if (j > 0 || i > 0) {
+                    cartesiano += ",";
+                }
                 cartesiano += "<";
                 cartesiano += this.group.get(i).getValue() + "," + conjunto.group.get(j).getValue();
-                cartesiano += ">,";
+                cartesiano += ">";
             }
 
         }
@@ -117,6 +126,7 @@ public class Group {
         cartesiano += "}";
         return cartesiano;
     }
+    
 
     public static String reverterCartesiano(String resultado) {
         String nome = resultado.replaceAll(" ", "");
@@ -136,6 +146,7 @@ public class Group {
         for (int i = 3; i < nome2.length; i++) {
             String array[] = nome2[i].split(",");
             String name = array[1];
+            name = name.replaceAll(">", "");
             Element e = new Element(name);
             e.setValue(Integer.parseInt(name));
             if (!conjuntoB.pertence(e)) {
@@ -176,19 +187,19 @@ public class Group {
         String[] array = new String[tam];
         for (int i = 0; i < tam; i++) {
             resultado += "{";
-            resultado += this.getGroup().get(i).getName() + "},";        
+            resultado += this.getGroup().get(i).getName() + "},";
             for (int j = 1; j < tam - i; j++) {
                 resultado += "{";
                 resultado += this.getGroup().get(i).getName();
-                for (int k = 1;  k <tam ; k++) {
+                for (int k = 1; k < tam; k++) {
                     resultado += "," + this.getGroup().get(combi).getName();
-                    
+
                 }
                 resultado += "}";
             }
 
         }
         return resultado;
-    
-}
+
+    }
 }

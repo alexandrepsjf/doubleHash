@@ -54,8 +54,11 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 
     <body>
         <script>
-            const fileInput = document.getElementById('url');
-
+            const fileInput = document.getElementByName('url');
+            fileInput.addEventListener('change', event => appendFiles(event.target.files));
+        </script> 
+        <script>
+            const fileInput = document.getElementById('url1');
             fileInput.addEventListener('change', event => appendFiles(event.target.files));
         </script>
         <!-- Header -->
@@ -186,6 +189,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                     <!-- about -->
                     <div class="col-md-4">
                         <div class="about">
+                            <h3>Trabalho 1</h3>
                             <div >
                                 <form method="post" action="FrontController?action=CriarArquivo">
                                     <input type='file' accept='text/*' id='url' name='url' class="imputFile"  />
@@ -200,19 +204,27 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                     <!-- /about -->
                     <!-- about -->
                     <div class="col-md-4">
-                        <div class="about ">
-                            
+                        <div class="about ">                            
                             <h3>Trabalho 2</h3>
-                           					
+                            <div >
+                                <form method="post" action="FrontController?action=CriarArquivoRelacao">
+                                    <input type='file' accept='text/*' id='url1' name='url' class="imputFile"  />
+                                    <label for='url1' >
+                                        <div class='btn btn-primary'>Escolha seu arquivo TXT</div>
+                                    </label >
+                                    <button type="submit" class="btn btn-warning">Enviar</button>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
                     <!-- /about -->
                     <!-- about -->
                     <div class="col-md-4">
                         <div class="about">
-                            
+
                             <h3>Trabalho 3</h3>
-                           
+
                         </div>
                     </div>
                     <!-- /about -->
@@ -222,43 +234,43 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             <!-- /Container -->
         </div>
         <!-- Team -->
-            <div id="team" class="section md-padding">
-                <!-- Container -->
-                <div class="container">
-                    <!-- Row -->
-                    <div class="row">
-                        <!-- Section header -->
-                        <div class="section-header text-center">
-                            <h2 class="title">Participantes</h2>
-                        </div>
-                        <!-- /Section header -->
-                        <!-- team -->
-                        <div class=" col-sm-offset-4 col-sm-4">
-                            <div class="team">
-                                <div class="team-img">
-                                    <img class="img-responsive" src="./img/alexandre.jpg" alt="">
-                                    <div class="overlay">
-                                        <div class="team-social">
-                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                                            <a href="#"><i class="fab fa-twitter"></i></a>
-                                        </div>
+        <div id="team" class="section md-padding">
+            <!-- Container -->
+            <div class="container">
+                <!-- Row -->
+                <div class="row">
+                    <!-- Section header -->
+                    <div class="section-header text-center">
+                        <h2 class="title">Participantes</h2>
+                    </div>
+                    <!-- /Section header -->
+                    <!-- team -->
+                    <div class=" col-sm-offset-4 col-sm-4">
+                        <div class="team">
+                            <div class="team-img">
+                                <img class="img-responsive" src="./img/alexandre.jpg" alt="">
+                                <div class="overlay">
+                                    <div class="team-social">
+                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
                                     </div>
                                 </div>
-                                <div class="team-content">
-                                    <h3>Alexandre de Paula - O Bão</h3>
-                                    <span>Web Designer</span>
-                                </div>
+                            </div>
+                            <div class="team-content">
+                                <h3>Alexandre de Paula - O Bão</h3>
+                                <span>Web Designer</span>
                             </div>
                         </div>
-                        <!-- /team -->
-
                     </div>
-                    <!-- /Row -->
+                    <!-- /team -->
+
                 </div>
-                <!-- /Container -->
+                <!-- /Row -->
             </div>
-            <!-- /Team -->
+            <!-- /Container -->
+        </div>
+        <!-- /Team -->
         <!-- Footer -->
         <footer id="footer" class="sm-padding bg-dark">
             <!-- Container -->
