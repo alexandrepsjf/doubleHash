@@ -30,7 +30,7 @@ public class CriarQuadradoAction implements Action {
         String fileName = request.getParameter("url");
         Leitor leitor = new Leitor();
         leitor.lerArquivo(Buffer.readFile(fileName));
-        String resultado  = Relacao.MenorQue(leitor.getGroupByName(a),leitor.getGroupByName(b));
+        String resultado  = Relacao.quadrado(leitor.getGroupByName(a),leitor.getGroupByName(b));
         request.setAttribute("resultado", resultado);
         request.setAttribute("url", fileName);
 

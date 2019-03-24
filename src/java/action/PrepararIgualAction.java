@@ -13,32 +13,26 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Buffer;
-import model.Group;
 import model.Leitor;
-import model.Relacao;
 
 /**
  *
  * @author alexandre
  */
-public class CriarRaizAction implements Action {
+public class PrepararIgualAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String a = request.getParameter("a");
-        String b = request.getParameter("b");
         String fileName = request.getParameter("url");
         Leitor leitor = new Leitor();
         leitor.lerArquivo(Buffer.readFile(fileName));
-        String resultado  = Relacao.raizQuadrada(leitor.getGroupByName(a),leitor.getGroupByName(b));
-        request.setAttribute("resultado", resultado);
+        request.setAttribute("conjuntos", leitor.getListaConjuntos());
         request.setAttribute("url", fileName);
 
         try {
-            request.getRequestDispatcher("resultadoRelacao.jsp").forward(request, response);
+            request.getRequestDispatcher("prepararIgual.jsp").forward(request, response);
         } catch (ServletException ex) {
             Logger.getLogger(CriarArquivoAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

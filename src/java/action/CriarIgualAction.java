@@ -21,7 +21,7 @@ import model.Relacao;
  *
  * @author alexandre
  */
-public class CriarRaizAction implements Action {
+public class CriarIgualAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -30,7 +30,7 @@ public class CriarRaizAction implements Action {
         String fileName = request.getParameter("url");
         Leitor leitor = new Leitor();
         leitor.lerArquivo(Buffer.readFile(fileName));
-        String resultado  = Relacao.raizQuadrada(leitor.getGroupByName(a),leitor.getGroupByName(b));
+        String resultado  = Relacao.IgualA(leitor.getGroupByName(a),leitor.getGroupByName(b));
         request.setAttribute("resultado", resultado);
         request.setAttribute("url", fileName);
 

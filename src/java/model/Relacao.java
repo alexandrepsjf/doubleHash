@@ -193,7 +193,7 @@ public class Relacao {
                 Element elementoDestino = destino.getGroup().get(j);
                 int a = elementoOrigem.getValue();
                 int b = elementoDestino.getValue();
-                if (a == (b^2)) {
+                if (a == (b * b)) {
                     matriz[i][j] = 1;
                     if (quadrado > 0) {
                         quadradoDe += ",";
@@ -215,7 +215,9 @@ public class Relacao {
         quadradoDe += "</br>" + dominio.getGrupo() + " (dominio de definição) </br>" + imagem.getGrupo() + " (imagem)";
         quadradoDe += classifica(matriz);
         return quadradoDe;
-    }public static String raizQuadrada(Group origem, Group destino) {
+    }
+
+    public static String raizQuadrada(Group origem, Group destino) {
         int tam1 = origem.getGroup().size();
         int tam2 = destino.getGroup().size();
         int[][] matriz = new int[tam1][tam2];
@@ -346,4 +348,80 @@ public class Relacao {
         return result;
     }
 
+    public static boolean validaLista(Group origem, String listaOrigem, Group destino, String listaDestino) {
+
+        listaOrigem = listaOrigem.replaceAll(" ", "");
+        String listaOri[] = listaOrigem.split(",");
+        listaDestino = listaDestino.replaceAll(" ", "");
+        String listaDes[] = listaDestino.split(",");
+        if (listaDes.length == listaOri.length) {
+            for (int i = 0; i < listaOri.length; i++) {
+                Element aux = new Element(listaOri[i]);
+                aux.setValue(Integer.parseInt(listaOri[i]));
+                if (!origem.pertence(aux)) {
+                    return false;
+                }
+
+            }
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    public static String arbitraria(Group origem, String listaOrigem, Group destino, String listaDestino) {
+        int tam1 = origem.getGroup().size();
+        int tam2 = destino.getGroup().size();
+        int[][] matriz = new int[tam1][tam2];
+        listaOrigem = listaOrigem.replaceAll(" ", "");
+        String listaOri[] = listaOrigem.split(",");
+        listaDestino = listaDestino.replaceAll(" ", "");
+        String listaDes[] = listaDestino.split(",");
+        String nome1 = "Origem" + origem.name + "arbitraria" + destino.name;
+        String nome2 = "Destino" + origem.name + "arbitraria" + destino.name;
+        Group dominio = new Group(nome1);
+        Group imagem = new Group(nome2);
+        for (int i = 0; i < listaOri.length; i++) {
+            Element aux = new Element(listaOri[i]);
+            aux.setValue(Integer.parseInt(listaOri[i]));
+            dominio.getGroup().add(aux);
+        }
+        for (int i = 0; i < listaDes.length; i++) {
+            Element aux = new Element(listaDes[i]);
+            aux.setValue(Integer.parseInt(listaDes[i]));
+            imagem.getGroup().add(aux);
+        }
+        String arbitrariaDe = origem.name + "arbitraria" + destino.name;
+        int arbitraria = 0;
+        arbitrariaDe += "={";
+        for (int g = 0; g < dominio.getGroup().size(); g++) {
+            Element arbitrarioA = dominio.getGroup().get(g);
+            Element arbitrarioB = imagem.getGroup().get(g);
+            int a = arbitrarioA.getValue();
+            int b = arbitrarioB.getValue();
+            if (arbitraria > 0) {
+                arbitrariaDe += ",";
+            }
+            arbitrariaDe += "<";
+            arbitrariaDe += a + "," + b;
+            arbitrariaDe += ">";
+            arbitraria++;
+            for (int i = 0; i < origem.getGroup().size(); i++) {
+                Element elementoLinha = origem.getGroup().get(i);
+                for (int j = 0; j < destino.getGroup().size(); j++) {
+                    Element elementoColuna = destino.getGroup().get(j);
+                    if ((elementoLinha.equals(arbitrarioA)) && (elementoColuna.equals(arbitrarioB))) {
+                        matriz[i][j] = 1;
+                    }
+                }
+
+            }
+
+        }
+        arbitrariaDe += "}";
+        arbitrariaDe += "</br>" + dominio.getGrupo() + " (dominio de definição) </br>" + imagem.getGrupo() + " (imagem)";
+        arbitrariaDe += classifica(matriz);
+        return arbitrariaDe;
+
+    }
 }

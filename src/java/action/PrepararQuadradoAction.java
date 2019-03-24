@@ -30,7 +30,7 @@ public class PrepararQuadradoAction implements Action {
         request.setAttribute("url", fileName);
 
         try {
-            request.getRequestDispatcher("prepararMenor.jsp").forward(request, response);
+            request.getRequestDispatcher("prepararQuadrado.jsp").forward(request, response);
         } catch (ServletException ex) {
             Logger.getLogger(CriarArquivoAction.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -189,7 +189,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                     <!-- about -->
                     <div class="col-md-4">
                         <div class="about">
-                            <h3>Trabalho 1</h3>
+                            <h3>Operações com conjuntos - T1</h3>
                             <div >
                                 <form method="post" action="FrontController?action=CriarArquivo">
                                     <input type='file' accept='text/*' id='url' name='url' class="imputFile"  />
@@ -205,7 +205,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                     <!-- about -->
                     <div class="col-md-4">
                         <div class="about ">                            
-                            <h3>Trabalho 2</h3>
+                            <h3>Relação entre conjuntos - T2</h3>
                             <div >
                                 <form method="post" action="FrontController?action=CriarArquivoRelacao">
                                     <input type='file' accept='text/*' id='url1' name='url' class="imputFile"  />
@@ -215,16 +215,22 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                                     <button type="submit" class="btn btn-warning">Enviar</button>
                                 </form>
                             </div>
-
                         </div>
                     </div>
                     <!-- /about -->
                     <!-- about -->
                     <div class="col-md-4">
                         <div class="about">
-
-                            <h3>Trabalho 3</h3>
-
+                            <h3>Relação composta entre conjuntos - T2</h3>
+                            <div>
+                                <form method="post" action="FrontController?action=CriarArquivoRelacaoComposta">
+                                    <input type='file' accept='text/*' id='url1' name='url' class="imputFile"  />
+                                    <label for='url1' >
+                                        <div class='btn btn-primary'>Escolha seu arquivo TXT</div>
+                                    </label >
+                                    <button type="submit" class="btn btn-warning">Enviar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <!-- /about -->
