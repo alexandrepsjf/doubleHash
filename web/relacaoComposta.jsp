@@ -53,7 +53,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
     </head>
 
     <body class="white-text">
-        
+
         <!-- Header -->
     <header id="home">
         <!-- Background Image -->
@@ -84,7 +84,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                 </div>
 
                 <!--  Main navigation  -->
-               
+
                 <!-- /Main navigation -->
             </div>
         </nav>
@@ -99,67 +99,90 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                             <h1 class="white-text">Lista de conjuntos para Relação Composta</h1>
                         </div>                        
                         <div>
-                            <table class=" table text-primary">            
-                                <thead>                  
-                                    <tr> 
-                                        <th scope="col" colspan=""> Lista de Conjuntos  </th>
-                                        <th scope="col" colspan=""> Lista de Relações </th>
-                                        <th scope="col" colspan=""> Lista de Conjuntos S</th> 
-                                        <th scope="col" colspan=""> Lista de Relações </th>
-                                        <th scope="col" colspan=""> Lista de Conjuntos S</th>
-                                    </tr>
-                                </thead>
-                                <tbody>                               
-                                <td>                                    
-                                    <select colspan="" name="comboConjuntos1"> 
-                                        <c:forEach var="conjunto" items="${conjuntos}">  
-                                            <option value="">${conjunto.getGrupo()}</option>  
-                                        </c:forEach>  
-                                    </select>
-                                </td>
-                                <td>                                    
-                                    <select colspan="" name="relacao1"> 
-                                            <option value="maiorQue">Maior que</option>  
-                                            <option value="maenorQue">Menor que</option>  
-                                            <option value="Igual">Igual a</option>  
-                                            <option value="quadrado">Ser o quadrado de</option>  
-                                            <option value="raiz">Ser raiz quadrada</option>  
-                                            <option value="arbitraria">Relação arbitraria</option>  
-                                    </select>
-                                </td>
-                                <td>                                    
-                                    <select colspan="" name="comboConjuntos2"> 
-                                        <c:forEach var="conjunto" items="${conjuntos}">  
-                                            <option value="">${conjunto.getGrupo()}</option>  
-                                        </c:forEach>  
-                                    </select>
-                                </td>
-                                <td>                                    
-                                    <select colspan="" name="relacao1"> 
-                                            <option value="maiorQue">Maior que</option>  
-                                            <option value="maenorQue">Menor que</option>  
-                                            <option value="Igual">Igual a</option>  
-                                            <option value="quadrado">Ser o quadrado de</option>  
-                                            <option value="raiz">Ser raiz quadrada</option>  
-                                            <option value="arbitraria">Relação arbitraria</option>  
-                                    </select>
-                                </td>
-                                <td>                                    
-                                    <select colspan="" name="comboConjuntos3"> 
-                                        <c:forEach var="conjunto" items="${conjuntos}">  
-                                            <option value="">${conjunto.getGrupo()}</option>  
-                                        </c:forEach>  
-                                    </select>
-                                </td>
-                                </tbody> 
-                            </table>
+                            <form method="post" action="FrontController?action=CriarRelacaoComposta&conjuntos=${conjuntos}&url=${url}">
+                                <table class=" table text-primary">            
+                                    <thead>                  
+                                        <tr> 
+                                            <th scope="col" colspan=""> Lista de Conjuntos  </th>
+                                            <th scope="col" colspan=""> Lista de Relações </th>
+                                            <th scope="col" colspan=""> Lista de Conjuntos</th> 
+                                            <th scope="col" colspan=""> Lista de Relações </th>
+                                            <th scope="col" colspan=""> Lista de Conjuntos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>  
+                                        <tr>
+                                            <td>                                    
+                                                <select colspan="" name="a"> 
+                                                    <c:forEach var="conjunto" items="${conjuntos}">  
+                                                        <option value="${conjunto.getName()}">${conjunto.getGrupo()}</option>  
+                                                    </c:forEach>  
+                                                </select>
+                                            </td>
+                                            <td>                                    
+                                                <select colspan="" name="rel1"> 
+                                                    <option value="1">Maior que</option>  
+                                                    <option value="2">Menor que</option>  
+                                                    <option value="3">Igual a</option>  
+                                                    <option value="4">Ser o quadrado de</option>  
+                                                    <option value="5">Ser raiz quadrada</option>  
+                                                    <option value="6">Relação arbitraria</option>  
+                                                </select>
+                                            </td>
+                                            <td>                                    
+                                                <select colspan="" name="b"> 
+                                                    <c:forEach var="conjunto" items="${conjuntos}">  
+                                                        <option value="${conjunto.getName()}">${conjunto.getGrupo()}</option>  
+                                                    </c:forEach>  
+                                                </select>
+                                            </td>
+                                            <td>                                    
+                                                <select colspan="" name="rel2"> 
+                                                    <option value="1">Maior que</option>  
+                                                    <option value="2">Menor que</option>  
+                                                    <option value="3">Igual a</option>  
+                                                    <option value="4">Ser o quadrado de</option>  
+                                                    <option value="5">Ser raiz quadrada</option>  
+                                                    <option value="6">Relação arbitraria</option>  
+                                                </select>
+                                            </td>
+                                            <td>                                    
+                                                <select colspan="" name="c"> 
+                                                    <c:forEach var="conjunto" items="${conjuntos}">  
+                                                        <option value="${conjunto.getName()}">${conjunto.getGrupo()}</option>  
+                                                    </c:forEach>  
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">  
+                                                <h5 class=" white-text">Insira abaixo os elementos do conjunto origem da primeira relação na ordem que deseja e separados por virgula.</h5>
+                                                <input type="text" class=" " name="listaOrigemAB"/>
+                                            </td>
+                                            <td colspan="3">
+                                                <h5 class=" white-text">Insira abaixo os elementos do conjunto destino da segunda relação na ordem que deseja e separados por virgula.</h5>
+                                                <input type="text" class=" " name="listaOrigemBC"/>
+                                            </td> 
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">  
+                                                <h5 class=" white-text">Insira abaixo os elementos do conjunto origem da primeira relação na ordem que deseja e separados por virgula.</h5>
+                                                <input type="text" class=" " name="listaDestinoAB"/>
+                                            </td>                                                                                        
+                                            <td colspan="3">
+                                                <h5 class=" white-text">Insira abaixo os elementos do conjunto destino da segunda relação na ordem que deseja e separados por virgula.</h5>
+                                                <input type="text" class=" " name="listaDestinoBC"/>
+                                            </td>                                   
+                                        </tr>
+                                    </tbody> 
+                                </table>                  
+                                <div class="row white-text">     
+                                    <div> <button type="submit" class="btn btn-warning"> Criar composição</button></h5></div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="container-fluid"> 
-                       
-                        <form method="post" action="FrontController?action=CriarRelacaoComposta&conjuntos=${conjuntos}&url=${url}"><button class="btn btn-warning btn-block"><h4>Criar composição</h4> </button></form>
-                    </div>
-                   
+
                     <!-- /home content -->
 
                 </div>

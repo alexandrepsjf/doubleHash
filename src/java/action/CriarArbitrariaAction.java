@@ -39,12 +39,13 @@ public class CriarArbitrariaAction implements Action {
              relacao.setOrigem(origem); 
              relacao.setDestino(destino); 
             relacao.arbitraria(listaOrigem, listaDestino);
+            resultado=relacao.getRelacao();
 
         } else {
             resultado = "Lista de elementos inválida, refaça a operação";
         }
 
-        request.setAttribute("resultado", relacao.getRelacao());
+        request.setAttribute("resultado", resultado);
         request.setAttribute("url", fileName);
         try {
             request.getRequestDispatcher("resultadoRelacao.jsp").forward(request, response);

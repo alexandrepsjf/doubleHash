@@ -13,8 +13,7 @@ public class Relacao {
 
     private int[][] matriz;
     private Group origem, destino, dominio, imagem;
-    private String clasificacao;
-    private String relacao;
+    private String clasificacao, relacao, listaOrigem, listaDestino;
 
     public Relacao(Group origem, Group destino) {
         this.origem = origem;
@@ -23,6 +22,8 @@ public class Relacao {
         this.imagem = new Group();
         this.clasificacao = "";
         this.relacao = "";
+        this.listaDestino = "";
+        this.listaOrigem = "";
     }
 
     public Relacao() {
@@ -30,6 +31,24 @@ public class Relacao {
         this.imagem = new Group();
         this.clasificacao = "";
         this.relacao = "";
+        this.listaDestino = "";
+        this.listaOrigem = "";
+    }
+
+    public String getListaOrigem() {
+        return listaOrigem;
+    }
+
+    public void setListaOrigem(String listaOrigem) {
+        this.listaOrigem = listaOrigem;
+    }
+
+    public String getListaDestino() {
+        return listaDestino;
+    }
+
+    public void setListaDestino(String listaDestino) {
+        this.listaDestino = listaDestino;
     }
 
     public String getRelacao() {
@@ -88,7 +107,71 @@ public class Relacao {
         this.clasificacao = clasificacao;
     }
 
-    public void geraMatriz() {
+    public Relacao criaComposta(Relacao relacaoBC) {
+        Relacao relacaoAC = new Relacao(this.origem, relacaoBC.destino);
+        relacaoAC.relacao = relacaoAC.origem.name + "Composta" + relacaoAC.destino.name;
+        relacaoAC.setMatriz(relacaoAC.geraMatrizComposta(this.matriz, relacaoBC.matriz));
+        String nome1 = "Origem" + relacaoAC.origem.name + "Composta" + relacaoAC.destino.name;
+        String nome2 = "Destino" + relacaoAC.origem.name + "Composta" + relacaoAC.destino.name;
+        relacaoAC.dominio.setName(nome1);
+        relacaoAC.imagem.setName(nome2);
+        for (int i = 0; i < relacaoAC.origem.getGroup().size(); i++) {
+            Element elementoOrigem = relacaoAC.origem.getGroup().get(i);
+            for (int j = 0; j < relacaoAC.destino.getGroup().size(); j++) {
+                Element elementoDestino = relacaoAC.destino.getGroup().get(j);
+                if (relacaoAC.matriz[i][j] == 1) {
+                    if (!relacaoAC.dominio.pertence(elementoOrigem)) {
+                        relacaoAC.dominio.getGroup().add(elementoOrigem);
+                    }
+                    if (!relacaoAC.imagem.pertence(elementoDestino)) {
+                        relacaoAC.imagem.getGroup().add(elementoDestino);
+                    }
+                }
+            }
+        }
+
+        relacaoAC.montaRelacao();
+        String relacao = relacaoAC.getRelacao() + relacaoAC.classifica(relacaoAC.matriz);
+        relacaoAC.setRelacao(relacao);
+        return relacaoAC;
+
+    }
+
+    public int[][] geraMatrizComposta(int[][] matrizA, int[][] matrizC) {
+        int m = matrizA.length;
+        int n = matrizC[0].length;
+        int[][] resultado = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < matrizA[0].length; k++) {
+                    resultado[i][j] += (matrizA[i][k] * matrizC[k][j]);
+                }
+            }
+        }
+        return resultado;
+    }
+
+    public void montaRelacao() {
+        this.relacao += "={";
+        int cont = 0;
+        for (int linha = 0; linha < matriz.length; linha++) {
+            for (int coluna = 0; coluna < matriz[0].length; coluna++) {
+                if (matriz[linha][coluna] == 1) {
+                    if (cont > 0) {
+                        this.relacao += ",";
+                    }
+                    this.relacao += "<";
+                    this.relacao += this.origem.getGroup().get(linha).getValue() + ","
+                            + this.destino.getGroup().get(coluna).getValue();
+                    this.relacao += ">";
+                    cont++;
+                }
+            }
+
+        }
+        this.relacao += "}";
+        this.relacao += "</br>" + dominio.getGrupo() + " (dominio de definição) </br>" + imagem.getGrupo() + " (imagem)";
+
     }
 
     public void MaiorQue() {
@@ -119,29 +202,6 @@ public class Relacao {
         }
         this.montaRelacao();
         this.relacao += classifica(matriz);
-    }
-
-    public void montaRelacao() {
-        this.relacao += "={";
-        int cont = 0;
-        for (int linha = 0; linha < matriz.length; linha++) {
-            for (int coluna = 0; coluna < matriz[0].length; coluna++) {
-                if (matriz[linha][coluna] == 1) {
-                    if (cont > 0) {
-                        this.relacao += ",";
-                    }
-                    this.relacao += "<";
-                    this.relacao += this.origem.getGroup().get(linha).getValue() + ","
-                            + this.destino.getGroup().get(coluna).getValue();
-                    this.relacao += ">";
-                    cont++;
-                }
-            }
-
-        }
-       
-        this.relacao += "</br>" + dominio.getGrupo() + " (dominio de definição) </br>" + imagem.getGrupo() + " (imagem)";
-
     }
 
     public String classifica(int[][] matriz) {
@@ -462,5 +522,35 @@ public class Relacao {
         this.montaRelacao();
         this.relacao += classifica(this.matriz);
 
+    }
+
+    public void selecionaRelacao(int rel) {
+        switch (rel) {
+            case 1:
+                this.MaiorQue();
+                break;
+            case 2:
+                this.MenorQue();
+                break;
+
+            case 3:
+                this.IgualA();
+                break;
+
+            case 4:
+                this.quadrado();
+                break;
+
+            case 5:
+                this.raizQuadrada();
+                break;
+
+            case 6:
+                this.arbitraria(this.listaOrigem, this.listaDestino);
+                break;
+
+            default:
+                break;
+        }
     }
 }
