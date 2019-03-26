@@ -224,8 +224,8 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                             <h3>Relação composta entre conjuntos - T2</h3>
                             <div>
                                 <form method="post" action="FrontController?action=CriarArquivoRelacaoComposta">
-                                    <input type='file' accept='text/*' id='url1' name='url' class="imputFile"  />
-                                    <label for='url1' >
+                                    <input type='file' accept='text/*' id='url2' name='url' class="imputFile"  />
+                                    <label for='url2' >
                                         <div class='btn btn-primary'>Escolha seu arquivo TXT</div>
                                     </label >
                                     <button type="submit" class="btn btn-warning">Enviar</button>

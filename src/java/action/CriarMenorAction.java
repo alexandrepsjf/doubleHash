@@ -30,8 +30,10 @@ public class CriarMenorAction implements Action {
         String fileName = request.getParameter("url");
         Leitor leitor = new Leitor();
         leitor.lerArquivo(Buffer.readFile(fileName));
-        String resultado  = Relacao.MenorQue(leitor.getGroupByName(a),leitor.getGroupByName(b));
-        request.setAttribute("resultado", resultado);
+       Relacao relacao = new Relacao(leitor.getGroupByName(a), leitor.getGroupByName(b));
+        relacao.MenorQue();
+        request.setAttribute("resultado", relacao.getRelacao());
+        request.setAttribute("url", fileName);
         request.setAttribute("url", fileName);
 
         try {

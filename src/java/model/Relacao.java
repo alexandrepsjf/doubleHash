@@ -11,48 +11,140 @@ package model;
  */
 public class Relacao {
 
-    public static String MaiorQue(Group origem, Group destino) {
-        int tam1 = origem.getGroup().size();
-        int tam2 = destino.getGroup().size();
-        int[][] matriz = new int[tam1][tam2];
-        String nome1 = "Origem" + origem.name + "maiorQue" + destino.name;
-        String nome2 = "Destino" + origem.name + "maiorQue" + destino.name;
-        Group dominio = new Group(nome1);
-        Group imagem = new Group(nome2);
-        String maiorQue = origem.name + "maiorQue" + destino.name;
-        int maior = 0;
-        maiorQue += "={";
-        for (int i = 0; i < origem.getGroup().size(); i++) {
-            Element elementoOrigem = origem.getGroup().get(i);
-            for (int j = 0; j < destino.getGroup().size(); j++) {
-                Element elementoDestino = destino.getGroup().get(j);
+    private int[][] matriz;
+    private Group origem, destino, dominio, imagem;
+    private String clasificacao;
+    private String relacao;
+
+    public Relacao(Group origem, Group destino) {
+        this.origem = origem;
+        this.destino = destino;
+        this.dominio = new Group();
+        this.imagem = new Group();
+        this.clasificacao = "";
+        this.relacao = "";
+    }
+
+    public Relacao() {
+        this.dominio = new Group();
+        this.imagem = new Group();
+        this.clasificacao = "";
+        this.relacao = "";
+    }
+
+    public String getRelacao() {
+        return relacao;
+    }
+
+    public void setRelacao(String relacao) {
+        this.relacao = relacao;
+    }
+
+    public int[][] getMatriz() {
+        return matriz;
+    }
+
+    public void setMatriz(int[][] matriz) {
+        this.matriz = matriz;
+    }
+
+    public Group getOrigem() {
+        return origem;
+    }
+
+    public void setOrigem(Group origem) {
+        this.origem = origem;
+    }
+
+    public Group getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Group destino) {
+        this.destino = destino;
+    }
+
+    public Group getDominio() {
+        return dominio;
+    }
+
+    public void setDominio(Group dominio) {
+        this.dominio = dominio;
+    }
+
+    public Group getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(Group imagem) {
+        this.imagem = imagem;
+    }
+
+    public String getClasificacao() {
+        return clasificacao;
+    }
+
+    public void setClasificacao(String clasificacao) {
+        this.clasificacao = clasificacao;
+    }
+
+    public void geraMatriz() {
+    }
+
+    public void MaiorQue() {
+        int tam1 = this.origem.getGroup().size();
+        int tam2 = this.destino.getGroup().size();
+        this.matriz = new int[tam1][tam2];
+        String nome1 = "Origem" + this.origem.name + "maiorQue" + this.destino.name;
+        String nome2 = "Destino" + this.origem.name + "maiorQue" + this.destino.name;
+        this.dominio.setName(nome1);
+        this.imagem.setName(nome2);
+        this.relacao = this.origem.name + "maiorQue" + this.destino.name;
+        for (int i = 0; i < this.origem.getGroup().size(); i++) {
+            Element elementoOrigem = this.origem.getGroup().get(i);
+            for (int j = 0; j < this.destino.getGroup().size(); j++) {
+                Element elementoDestino = this.destino.getGroup().get(j);
                 int a = elementoOrigem.getValue();
                 int b = elementoDestino.getValue();
                 if (a > b) {
-                    matriz[i][j] = 1;
-                    if (maior > 0) {
-                        maiorQue += ",";
+                    this.matriz[i][j] = 1;
+                    if (!this.dominio.pertence(elementoOrigem)) {
+                        this.dominio.getGroup().add(elementoOrigem);
                     }
-                    if (!dominio.pertence(elementoOrigem)) {
-                        dominio.getGroup().add(elementoOrigem);
+                    if (!this.imagem.pertence(elementoDestino)) {
+                        this.imagem.getGroup().add(elementoDestino);
                     }
-                    if (!imagem.pertence(elementoDestino)) {
-                        imagem.getGroup().add(elementoDestino);
-                    }
-                    maiorQue += "<";
-                    maiorQue += a + "," + b;
-                    maiorQue += ">";
-                    maior++;
                 }
             }
         }
-        maiorQue += "}";
-        maiorQue += "</br>" + dominio.getGrupo() + " (dominio de definição) </br>" + imagem.getGrupo() + " (imagem)";
-        maiorQue += classifica(matriz);
-        return maiorQue;
+        this.montaRelacao();
+        this.relacao += classifica(matriz);
     }
 
-    private static String classifica(int[][] matriz) {
+    public void montaRelacao() {
+        this.relacao += "={";
+        int cont = 0;
+        for (int linha = 0; linha < matriz.length; linha++) {
+            for (int coluna = 0; coluna < matriz[0].length; coluna++) {
+                if (matriz[linha][coluna] == 1) {
+                    if (cont > 0) {
+                        this.relacao += ",";
+                    }
+                    this.relacao += "<";
+                    this.relacao += this.origem.getGroup().get(linha).getValue() + ","
+                            + this.destino.getGroup().get(coluna).getValue();
+                    this.relacao += ">";
+                    cont++;
+                }
+            }
+
+        }
+       
+        this.relacao += "</br>" + dominio.getGrupo() + " (dominio de definição) </br>" + imagem.getGrupo() + " (imagem)";
+
+    }
+
+    public String classifica(int[][] matriz) {
 
         String classifica = "";
         if (Relacao.isTotal(matriz)) {
@@ -94,58 +186,47 @@ public class Relacao {
         return classifica;
     }
 
-    public static String MenorQue(Group origem, Group destino) {
-        int tam1 = origem.getGroup().size();
-        int tam2 = destino.getGroup().size();
-        int[][] matriz = new int[tam1][tam2];
-        String nome1 = "Origem" + origem.name + "menorQue" + destino.name;
-        String nome2 = "Destino" + origem.name + "menorQue" + destino.name;
-        Group dominio = new Group(nome1);
-        Group imagem = new Group(nome2);
-        String menorQue = origem.name + "menorQue" + destino.name;
-        int menor = 0;
-        menorQue += "={";
-        for (int i = 0; i < origem.getGroup().size(); i++) {
-            Element elementoOrigem = origem.getGroup().get(i);
-            for (int j = 0; j < destino.getGroup().size(); j++) {
-                Element elementoDestino = destino.getGroup().get(j);
+    public void MenorQue() {
+        int tam1 = this.origem.getGroup().size();
+        int tam2 = this.destino.getGroup().size();
+        this.matriz = new int[tam1][tam2];
+        String nome1 = "Origem" + this.origem.name + "menorQue" + this.destino.name;
+        String nome2 = "Destino" + this.origem.name + "menorQue" + this.destino.name;
+        this.dominio.setName(nome1);
+        this.imagem.setName(nome2);
+        this.relacao = this.origem.name + "menorQue" + this.destino.name;
+        for (int i = 0; i < this.origem.getGroup().size(); i++) {
+            Element elementoOrigem = this.origem.getGroup().get(i);
+            for (int j = 0; j < this.destino.getGroup().size(); j++) {
+                Element elementoDestino = this.destino.getGroup().get(j);
                 int a = elementoOrigem.getValue();
                 int b = elementoDestino.getValue();
                 if (a < b) {
-                    matriz[i][j] = 1;
-                    if (menor > 0) {
-                        menorQue += ",";
+                    this.matriz[i][j] = 1;
+
+                    if (!this.dominio.pertence(elementoOrigem)) {
+                        this.dominio.getGroup().add(elementoOrigem);
                     }
-                    if (!dominio.pertence(elementoOrigem)) {
-                        dominio.getGroup().add(elementoOrigem);
+                    if (!this.imagem.pertence(elementoDestino)) {
+                        this.imagem.getGroup().add(elementoDestino);
                     }
-                    if (!imagem.pertence(elementoDestino)) {
-                        imagem.getGroup().add(elementoDestino);
-                    }
-                    menorQue += "<";
-                    menorQue += a + "," + b;
-                    menorQue += ">";
-                    menor++;
+
                 }
             }
         }
-        menorQue += "}";
-        menorQue += "</br>" + dominio.getGrupo() + " (dominio de definição) </br>" + imagem.getGrupo() + " (imagem)";
-        menorQue += classifica(matriz);
-        return menorQue;
+        this.montaRelacao();
+        this.relacao += classifica(this.matriz);
     }
 
-    public static String IgualA(Group origem, Group destino) {
-        int tam1 = origem.getGroup().size();
-        int tam2 = destino.getGroup().size();
-        int[][] matriz = new int[tam1][tam2];
-        String nome1 = "Origem" + origem.name + "igualA" + destino.name;
-        String nome2 = "Destino" + origem.name + "igualA" + destino.name;
-        Group dominio = new Group(nome1);
-        Group imagem = new Group(nome2);
-        String igualA = origem.name + "igualA" + destino.name;
-        int igual = 0;
-        igualA += "={";
+    public void IgualA() {
+        int tam1 = this.origem.getGroup().size();
+        int tam2 = this.destino.getGroup().size();
+        this.matriz = new int[tam1][tam2];
+        String nome1 = "Origem" + this.origem.name + "igualA" + this.destino.name;
+        String nome2 = "Destino" + this.origem.name + "igualA" + this.destino.name;
+        this.dominio.setName(nome1);
+        this.imagem.setName(nome2);
+        this.relacao = this.origem.name + "igualA" + this.destino.name;
         for (int i = 0; i < origem.getGroup().size(); i++) {
             Element elementoOrigem = origem.getGroup().get(i);
             for (int j = 0; j < destino.getGroup().size(); j++) {
@@ -154,39 +235,29 @@ public class Relacao {
                 int b = elementoDestino.getValue();
                 if (a == b) {
                     matriz[i][j] = 1;
-                    if (igual > 0) {
-                        igualA += ",";
-                    }
                     if (!dominio.pertence(elementoOrigem)) {
                         dominio.getGroup().add(elementoOrigem);
                     }
                     if (!imagem.pertence(elementoDestino)) {
                         imagem.getGroup().add(elementoDestino);
                     }
-                    igualA += "<";
-                    igualA += a + "," + b;
-                    igualA += ">";
-                    igual++;
+
                 }
             }
         }
-        igualA += "}";
-        igualA += "</br>" + dominio.getGrupo() + " (dominio de definição) </br>" + imagem.getGrupo() + " (imagem)";
-        igualA += classifica(matriz);
-        return igualA;
+        this.montaRelacao();
+        this.relacao += classifica(this.matriz);
     }
 
-    public static String quadrado(Group origem, Group destino) {
-        int tam1 = origem.getGroup().size();
-        int tam2 = destino.getGroup().size();
-        int[][] matriz = new int[tam1][tam2];
-        String nome1 = "Origem" + origem.name + "quadradoDe" + destino.name;
-        String nome2 = "Destino" + origem.name + "quadradoDe" + destino.name;
-        Group dominio = new Group(nome1);
-        Group imagem = new Group(nome2);
-        String quadradoDe = origem.name + "quadradoDe" + destino.name;
-        int quadrado = 0;
-        quadradoDe += "={";
+    public void quadrado() {
+        int tam1 = this.origem.getGroup().size();
+        int tam2 = this.destino.getGroup().size();
+        this.matriz = new int[tam1][tam2];
+        String nome1 = "Origem" + this.origem.name + "quadradoDe" + this.destino.name;
+        String nome2 = "Destino" + this.origem.name + "quadradoDe" + this.destino.name;
+        this.dominio.setName(nome1);
+        this.imagem.setName(nome2);
+        this.relacao = this.origem.name + "quadradoDe" + this.destino.name;
         for (int i = 0; i < origem.getGroup().size(); i++) {
             Element elementoOrigem = origem.getGroup().get(i);
             for (int j = 0; j < destino.getGroup().size(); j++) {
@@ -195,39 +266,29 @@ public class Relacao {
                 int b = elementoDestino.getValue();
                 if (a == (b * b)) {
                     matriz[i][j] = 1;
-                    if (quadrado > 0) {
-                        quadradoDe += ",";
-                    }
                     if (!dominio.pertence(elementoOrigem)) {
                         dominio.getGroup().add(elementoOrigem);
                     }
                     if (!imagem.pertence(elementoDestino)) {
                         imagem.getGroup().add(elementoDestino);
                     }
-                    quadradoDe += "<";
-                    quadradoDe += a + "," + b;
-                    quadradoDe += ">";
-                    quadrado++;
+
                 }
             }
         }
-        quadradoDe += "}";
-        quadradoDe += "</br>" + dominio.getGrupo() + " (dominio de definição) </br>" + imagem.getGrupo() + " (imagem)";
-        quadradoDe += classifica(matriz);
-        return quadradoDe;
+        this.montaRelacao();
+        this.relacao += classifica(this.matriz);
     }
 
-    public static String raizQuadrada(Group origem, Group destino) {
-        int tam1 = origem.getGroup().size();
-        int tam2 = destino.getGroup().size();
-        int[][] matriz = new int[tam1][tam2];
-        String nome1 = "Origem" + origem.name + "raizQuadradaDe" + destino.name;
-        String nome2 = "Destino" + origem.name + "raizQuadradaDe" + destino.name;
-        Group dominio = new Group(nome1);
-        Group imagem = new Group(nome2);
-        String raizQuadradaDe = origem.name + "raizQuadradaDe" + destino.name;
-        int raizQuadrada = 0;
-        raizQuadradaDe += "={";
+    public void raizQuadrada() {
+        int tam1 = this.origem.getGroup().size();
+        int tam2 = this.destino.getGroup().size();
+        this.matriz = new int[tam1][tam2];
+        String nome1 = "Origem" + this.origem.name + "raizQuadradaDe" + this.destino.name;
+        String nome2 = "Destino" + this.origem.name + "raizQuadradaDe" + this.destino.name;
+        this.dominio.setName(nome1);
+        this.imagem.setName(nome2);
+        this.relacao = this.origem.name + "raizQuadradaDe" + this.destino.name;
         for (int i = 0; i < origem.getGroup().size(); i++) {
             Element elementoOrigem = origem.getGroup().get(i);
             for (int j = 0; j < destino.getGroup().size(); j++) {
@@ -236,26 +297,17 @@ public class Relacao {
                 int b = elementoDestino.getValue();
                 if (a == Math.sqrt(b)) {
                     matriz[i][j] = 1;
-                    if (raizQuadrada > 0) {
-                        raizQuadradaDe += ",";
-                    }
                     if (!dominio.pertence(elementoOrigem)) {
                         dominio.getGroup().add(elementoOrigem);
                     }
                     if (!imagem.pertence(elementoDestino)) {
                         imagem.getGroup().add(elementoDestino);
                     }
-                    raizQuadradaDe += "<";
-                    raizQuadradaDe += a + "," + b;
-                    raizQuadradaDe += ">";
-                    raizQuadrada++;
                 }
             }
         }
-        raizQuadradaDe += "}";
-        raizQuadradaDe += "</br>" + dominio.getGrupo() + " (dominio de definição) </br>" + imagem.getGrupo() + " (imagem)";
-        raizQuadradaDe += classifica(matriz);
-        return raizQuadradaDe;
+        this.montaRelacao();
+        this.relacao += classifica(this.matriz);
     }
 
     public static boolean isFuncional(int[][] matriz) {
@@ -369,59 +421,46 @@ public class Relacao {
         return true;
     }
 
-    public static String arbitraria(Group origem, String listaOrigem, Group destino, String listaDestino) {
-        int tam1 = origem.getGroup().size();
-        int tam2 = destino.getGroup().size();
-        int[][] matriz = new int[tam1][tam2];
+    public void arbitraria(String listaOrigem, String listaDestino) {
+        int tam1 = this.origem.getGroup().size();
+        int tam2 = this.destino.getGroup().size();
+        this.matriz = new int[tam1][tam2];
         listaOrigem = listaOrigem.replaceAll(" ", "");
         String listaOri[] = listaOrigem.split(",");
         listaDestino = listaDestino.replaceAll(" ", "");
         String listaDes[] = listaDestino.split(",");
-        String nome1 = "Origem" + origem.name + "arbitraria" + destino.name;
-        String nome2 = "Destino" + origem.name + "arbitraria" + destino.name;
-        Group dominio = new Group(nome1);
-        Group imagem = new Group(nome2);
+        String nome1 = "Origem" + this.origem.name + "arbitraria" + this.destino.name;
+        String nome2 = "Destino" + this.origem.name + "arbitraria" + this.destino.name;
+        this.dominio.setName(nome1);
+        this.imagem.setName(nome2);
         for (int i = 0; i < listaOri.length; i++) {
             Element aux = new Element(listaOri[i]);
             aux.setValue(Integer.parseInt(listaOri[i]));
-            dominio.getGroup().add(aux);
+            this.dominio.getGroup().add(aux);
         }
         for (int i = 0; i < listaDes.length; i++) {
             Element aux = new Element(listaDes[i]);
             aux.setValue(Integer.parseInt(listaDes[i]));
-            imagem.getGroup().add(aux);
+            this.imagem.getGroup().add(aux);
         }
-        String arbitrariaDe = origem.name + "arbitraria" + destino.name;
-        int arbitraria = 0;
-        arbitrariaDe += "={";
-        for (int g = 0; g < dominio.getGroup().size(); g++) {
-            Element arbitrarioA = dominio.getGroup().get(g);
-            Element arbitrarioB = imagem.getGroup().get(g);
-            int a = arbitrarioA.getValue();
-            int b = arbitrarioB.getValue();
-            if (arbitraria > 0) {
-                arbitrariaDe += ",";
-            }
-            arbitrariaDe += "<";
-            arbitrariaDe += a + "," + b;
-            arbitrariaDe += ">";
-            arbitraria++;
-            for (int i = 0; i < origem.getGroup().size(); i++) {
-                Element elementoLinha = origem.getGroup().get(i);
-                for (int j = 0; j < destino.getGroup().size(); j++) {
-                    Element elementoColuna = destino.getGroup().get(j);
+        this.relacao = this.origem.name + "arbitraria" + this.destino.name;
+        for (int g = 0; g < this.dominio.getGroup().size(); g++) {
+            Element arbitrarioA = this.dominio.getGroup().get(g);
+            Element arbitrarioB = this.imagem.getGroup().get(g);
+            for (int i = 0; i < this.origem.getGroup().size(); i++) {
+                Element elementoLinha = this.origem.getGroup().get(i);
+                for (int j = 0; j < this.destino.getGroup().size(); j++) {
+                    Element elementoColuna = this.destino.getGroup().get(j);
                     if ((elementoLinha.equals(arbitrarioA)) && (elementoColuna.equals(arbitrarioB))) {
-                        matriz[i][j] = 1;
+                        this.matriz[i][j] = 1;
                     }
                 }
 
             }
 
         }
-        arbitrariaDe += "}";
-        arbitrariaDe += "</br>" + dominio.getGrupo() + " (dominio de definição) </br>" + imagem.getGrupo() + " (imagem)";
-        arbitrariaDe += classifica(matriz);
-        return arbitrariaDe;
+        this.montaRelacao();
+        this.relacao += classifica(this.matriz);
 
     }
 }

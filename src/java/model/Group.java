@@ -5,7 +5,6 @@
  */
 package model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +16,8 @@ public class Group {
     String name;
     private ArrayList<Element> group;
 
-    private Group() {
+    public Group() {
+        this.group = new ArrayList();
     }
 
     public String getName() {
@@ -126,7 +126,6 @@ public class Group {
         cartesiano += "}";
         return cartesiano;
     }
-    
 
     public static String reverterCartesiano(String resultado) {
         String nome = resultado.replaceAll(" ", "");

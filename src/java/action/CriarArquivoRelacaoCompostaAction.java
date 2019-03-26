@@ -14,32 +14,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Buffer;
 import model.Leitor;
-import model.Relacao;
 
 /**
  *
- * @author alexandre
+ * @author negro
  */
-public class CriarIgualAction implements Action {
+public class CriarArquivoRelacaoCompostaAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String a = request.getParameter("a");
-        String b = request.getParameter("b");
         String fileName = request.getParameter("url");
         Leitor leitor = new Leitor();
         leitor.lerArquivo(Buffer.readFile(fileName));
-        Relacao relacao = new Relacao(leitor.getGroupByName(a), leitor.getGroupByName(b));
-        relacao.IgualA();
-        request.setAttribute("resultado", relacao.getRelacao());
-        request.setAttribute("url", fileName);
+        request.setAttribute("conjuntos", leitor.getListaConjuntos());
         request.setAttribute("url", fileName);
 
         try {
-            request.getRequestDispatcher("resultadoRelacao.jsp").forward(request, response);
+            request.getRequestDispatcher("relacaoComposta.jsp").forward(request, response);
         } catch (ServletException ex) {
-            Logger.getLogger(CriarArquivoAction.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CriarArquivoRelacaoCompostaAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

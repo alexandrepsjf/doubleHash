@@ -26,7 +26,8 @@ public class CriarArbitrariaAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String fileName = request.getParameter("url");
-        String resultado = "";
+        String resultado="";
+        Relacao relacao = new Relacao();
         Leitor leitor = new Leitor();
         leitor.lerArquivo(Buffer.readFile(fileName));
         String listaOrigem = request.getParameter("listaA");
@@ -35,13 +36,16 @@ public class CriarArbitrariaAction implements Action {
         Group destino = leitor.getGroupByName(request.getParameter("b"));
         request.setAttribute("url", fileName);
         if ((Relacao.validaLista(origem, listaOrigem, destino, listaDestino))) {
-            resultado = Relacao.arbitraria(origem, listaOrigem, destino, listaDestino);
+             relacao.setOrigem(origem); 
+             relacao.setDestino(destino); 
+            relacao.arbitraria(listaOrigem, listaDestino);
+
         } else {
             resultado = "Lista de elementos inválida, refaça a operação";
         }
 
-        request.setAttribute("resultado", resultado);
-
+        request.setAttribute("resultado", relacao.getRelacao());
+        request.setAttribute("url", fileName);
         try {
             request.getRequestDispatcher("resultadoRelacao.jsp").forward(request, response);
         } catch (ServletException ex) {
