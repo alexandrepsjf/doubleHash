@@ -12,31 +12,25 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Buffer;
-import model.Group;
-import model.Leitor;
+import model.TabelaHash;
 
 /**
  *
- * @author alexandre
+ * @author negro
  */
-public class CriarReverterProdutoAction implements Action {
+public class CriarTabelaPeqAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-        String nome = request.getParameter("resultado");
-        String fileName = request.getParameter("url");
-        String resultado = Group.reverterCartesiano(nome);
-        request.setAttribute("resultado", resultado);
-        request.setAttribute("url", fileName);
-        request.setAttribute("NA", true);
-
+        int tamKey2 = Integer.parseInt(request.getParameter("tamKey2"));
+        int tamHash2 = Integer.parseInt(request.getParameter("tamHash2"));
+        TabelaHash tabela = new TabelaHash(tamHash2);
+        request.setAttribute("tabela", tabela.getArray());
+        request.setAttribute("tamKey2", tamKey2);
         try {
-            request.getRequestDispatcher("resultado.jsp").forward(request, response);
+            request.getRequestDispatcher("sucess.jsp").forward(request, response);
         } catch (ServletException ex) {
-            Logger.getLogger(CriarArquivoAction.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CriarTabelaPeqAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }

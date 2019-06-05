@@ -12,8 +12,7 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Buffer;
-import model.Leitor;
+
 
 /**
  *
@@ -23,16 +22,13 @@ public class PrepararQuadradoAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String fileName = request.getParameter("url");
-        Leitor leitor = new Leitor();
-        leitor.lerArquivo(Buffer.readFile(fileName));
-        request.setAttribute("conjuntos", leitor.getListaConjuntos());
+        String fileName = request.getParameter("url");      
         request.setAttribute("url", fileName);
 
         try {
             request.getRequestDispatcher("prepararQuadrado.jsp").forward(request, response);
         } catch (ServletException ex) {
-            Logger.getLogger(CriarArquivoAction.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CriarTabelaPeqAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -102,9 +102,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                         <div class="home-content" >
                             <h1 class="white-text  col-md-10 col-md-offset-1 ">Matemàtica Discreta</h1>                             
 
-                            <h3 class="row col-md-10 col-md-offset-1" style="color: #ffffff;text-shadow: 1px 2px #ff5614"> “Considerando que a maioria dos conceitos computacionais
-                                pertencem ao domínio do discreto, a matemática discreta (ou
-                                também chamada álgebra abstrata) é fortemente empregada.”							</h3>
+                            <h3 class="row col-md-10 col-md-offset-1" style="color: #ffffff;text-shadow: 1px 2px #ff5614"> T4 - Funções Hash e tratamento de colisões - DoubleHash							</h3>
 
                         </div>
 
@@ -120,62 +118,9 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
     <!-- Why Choose Us -->
     <div id="features" class="section md-padding bg-grey ">
         <!-- Container -->
-        <div class="container">
 
-            <!-- Row -->
-            <div class="row">
-                <!-- why choose us content -->
-                <div class="col-md-6">
-                    <div class="section-header">
-                        <h2 class="title">Conjunto</h2>
-                    </div>
-                    <h4>Definição</h4>
-
-                    <h3>Coleção de zero ou mais objetos distintos, chamados Elementos do
-                        conjunto os quais não possuem qualquer ordem associada</h3>
-                    <div class="feature">
-                        <i class="fa fa-check"></i>
-                        <p>estrutura que agrupa objetos.</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fa fa-check"></i>
-                        <p>constitui uma base para construir estruturas mais complexas.</p>
-                    </div>
-                    <h4>Informalmente</h4>
-
-                    <div class="feature">
-                        <i class="fa fa-check"></i>
-                        <p>coleção, sem repetições e sem qualquer ordenação, de objetos
-                            denominados elementos.</p>
-                    </div>
-                    <div class="feature">
-                        <i class="fa fa-check"></i>
-                        <p>elemento: pode designar um objeto concreto ou abstrato.</p>
-                    </div>
-                </div>
-                <!-- /why choose us content -->
-                <!-- About slider -->
-
-                <!-- /About slider -->
-
-            </div>
-        </div>
         <!-- /Row -->
-        <div class=" container md-padding">           
-            <h2 class=" col-lg-offset-4"> <i class="fa fa-bullhorn"></i> Fique ligado</h2>
-            <div class="col-md-6">                    
-                <h2><span class="font-weight-bold" style="font-family: impact;"> Operações Não-Reversíveis</span> </h2>
-                <h4><span class="" style="font-family: impact;"> <i class="fa fa-thumbs-down"></i> </span>   União ;</h4>
-                <h4><span class="" style="font-family: impact;"> <i class="fa fa-thumbs-down"></i> </span>  Intersecção;</h4>
-            </div>
-            <div class="col-md-6">
-                <h2><span class="font-weight-bold" style="font-family: impact;"> Operações Reversíveis </span> </h2>
-                <h4><span class="" style="font-family: impact;"> <i class="fa fa-thumbs-up"></i> </span> Complemento;</h4>
-                <h4><span class="" style="font-family: impact;"> <i class="fa fa-thumbs-up"></i> </span>  Conjunto das Partes;</h4>
-                <h4><span class="" style="font-family: impact;"> <i class="fa fa-thumbs-up"></i> </span>  Produto Cartesiano;</h4>
-                <h4><span class="" style="font-family: impact;"> <i class="fa fa-thumbs-up"></i> </span>  União Disjunta;</h4>
-            </div>
-        </div>
+
         <!-- /Container -->
         <!-- About -->
         <div  class="section md-padding">           
@@ -183,153 +128,237 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                 <div class="row">
                     <!-- Section header -->
                     <div class="section-header text-center">
-                        <h2 class="title">Escolha seu arquivo texto e suas operações</h2>
+                        <h2 class="title">Escolha o tamanho da tabela hash e o numero de chaves</h2>
                     </div>
                     <!-- /Section header -->
                     <!-- about -->
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="about">
-                            <h3>Operações com conjuntos - T1</h3>
+                            <h3>Escolha aqui para tabelas com mais de 50 posições </h3>
                             <div >
-                                <form method="post" action="FrontController?action=CriarArquivo">
-                                    <input type='file' accept='text/*' id='url' name='url' class="imputFile"  />
-                                    <label for='url' >
-                                        <div class='btn btn-primary'>Escolha seu arquivo TXT</div>
-                                    </label >
-                                    <button type="submit" class="btn btn-warning">Enviar</button>
-                                </form>
+                                <form method="post" action="FrontController?action=CriarTabelaGrd"> 
+                                    <div class= "form-group" > 
+                                        <label for= "tamKey1" > Chaves </label> 
+                                        <input type= "number" class= "form-control" id= "tamKey1" name="tamKey1" placeholder= "Numero de chaves" > 
+                                    </div> 
+                                    <div class= "form-group" > 
+                                        <label for= "tamHash1" > Tabela Hash </label> 
+                                        <input type= "number" class= "form-control" id= "tamHash1" name="tamHash1" placeholder= "Tamanho da tabela hash" > 
+                                        <button type="submit" class="btn btn-warning">Enviar</button>
+                                    </div> 
+                                </form> 
                             </div>					
                         </div>
                     </div>
                     <!-- /about -->
                     <!-- about -->
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="about ">                            
-                            <h3>Relação entre conjuntos - T2</h3>
+                            <h3>Escolha aqui para tabelas com 50 posições ou menos </h3>
                             <div >
-                                <form method="post" action="FrontController?action=CriarArquivoRelacao">
-                                    <input type='file' accept='text/*' id='url1' name='url' class="imputFile"  />
-                                    <label for='url1' >
-                                        <div class='btn btn-primary'>Escolha seu arquivo TXT</div>
-                                    </label >
-                                    <button type="submit" class="btn btn-warning">Enviar</button>
-                                </form>
+                                <form method="post" action="FrontController?action=CriarTabelaPeq"> 
+                                    <div class= "form-group" > 
+                                        <label for= "tamKey2" > Chaves </label> 
+                                        <input type= "number" class= "form-control" id= "tamKey2" name="tamKey2" placeholder= "Numero de chaves" > 
+                                    </div>          
+
+                                    <div class="form-group">
+                                        <label for="tamHash2">Selecione o tamanho da tabela hash</label>
+                                        <select class="form-control" id= "tamHash2" name="tamHash2" value="10" >
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option> 
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                            <option value="13">13</option>
+                                            <option value="14">14</option>
+                                            <option value="15">15</option>
+                                            <option value="16">16</option>
+                                            <option value="17">17</option>
+                                            <option value="18">18</option>
+                                            <option value="19">19</option>
+                                            <option value="20">20</option> 
+                                            <option value="21">21</option>
+                                            <option value="22">22</option>
+                                            <option value="23">23</option>
+                                            <option value="24">24</option>
+                                            <option value="25">25</option>
+                                            <option value="26">26</option>
+                                            <option value="27">27</option>
+                                            <option value="28">28</option>
+                                            <option value="29">29</option>
+                                            <option value="30">30</option> 
+                                            <option value="31">31</option>
+                                            <option value="32">32</option>
+                                            <option value="33">33</option>
+                                            <option value="34">34</option>
+                                            <option value="35">35</option>
+                                            <option value="36">36</option>
+                                            <option value="37">37</option>
+                                            <option value="38">38</option>
+                                            <option value="39">39</option>
+                                            <option value="40">40</option> 
+                                            <option value="41">41</option>
+                                            <option value="42">42</option>
+                                            <option value="43">43</option>
+                                            <option value="44">44</option>
+                                            <option value="45">45</option>
+                                            <option value="46">46</option>
+                                            <option value="47">47</option>
+                                            <option value="48">48</option>
+                                            <option value="49">49</option>
+                                            <option value="50">50</option>        
+                                        </select>
+                                        <button type="submit" class="btn btn-warning">Enviar</button>
+                                    </div>                                         
+                                </form> 
+
                             </div>
                         </div>
+                        <!-- /about -->
                     </div>
-                    <!-- /about -->
-                    <!-- about -->
-                    <div class="col-md-4">
-                        <div class="about">
-                            <h3>Relação composta entre conjuntos - T2</h3>
-                            <div>
-                                <form method="post" action="FrontController?action=CriarArquivoRelacaoComposta">
-                                    <input type='file' accept='text/*' id='url2' name='url' class="imputFile"  />
-                                    <label for='url2' >
-                                        <div class='btn btn-primary'>Escolha seu arquivo TXT</div>
-                                    </label >
-                                    <button type="submit" class="btn btn-warning">Enviar</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /about -->
+                    <!-- /Row -->
                 </div>
-                <!-- /Row -->
+                <!-- /Container -->
             </div>
-            <!-- /Container -->
-        </div>
-        <!-- Team -->
-        <div id="team" class="section md-padding">
-            <!-- Container -->
             <div class="container">
+
                 <!-- Row -->
                 <div class="row">
-                    <!-- Section header -->
-                    <div class="section-header text-center">
-                        <h2 class="title">Participantes</h2>
+                    <!-- why choose us content -->
+                    <div class="col-md-6">
+                        <div class="section-header">
+                            <h2 class="title">Conjunto</h2>
+                        </div>
+                        <h4>Definição</h4>
+
+                        <h3>Coleção de zero ou mais objetos distintos, chamados Elementos do
+                            conjunto os quais não possuem qualquer ordem associada</h3>
+                        <div class="feature">
+                            <i class="fa fa-check"></i>
+                            <p>estrutura que agrupa objetos.</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fa fa-check"></i>
+                            <p>constitui uma base para construir estruturas mais complexas.</p>
+                        </div>
+                        <h4>Informalmente</h4>
+
+                        <div class="feature">
+                            <i class="fa fa-check"></i>
+                            <p>coleção, sem repetições e sem qualquer ordenação, de objetos
+                                denominados elementos.</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fa fa-check"></i>
+                            <p>elemento: pode designar um objeto concreto ou abstrato.</p>
+                        </div>
                     </div>
-                    <!-- /Section header -->
-                    <!-- team -->
-                    <div class=" col-sm-offset-4 col-sm-4">
-                        <div class="team">
-                            <div class="team-img">
-                                <img class="img-responsive" src="./img/alexandre.jpg" alt="">
-                                <div class="overlay">
-                                    <div class="team-social">
-                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                        <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    <!-- /why choose us content -->
+                    <!-- About slider -->
+
+                    <!-- /About slider -->
+
+                </div>
+            </div>
+            <!-- Team -->
+            <div id="team" class="section md-padding">
+                <!-- Container -->
+                <div class="container">
+                    <!-- Row -->
+                    <div class="row">
+                        <!-- Section header -->
+                        <div class="section-header text-center">
+                            <h2 class="title">Participantes</h2>
+                        </div>
+                        <!-- /Section header -->
+                        <!-- team -->
+                        <div class=" col-sm-offset-4 col-sm-4">
+                            <div class="team">
+                                <div class="team-img">
+                                    <img class="img-responsive" src="./img/alexandre.jpg" alt="">
+                                    <div class="overlay">
+                                        <div class="team-social">
+                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                                            <a href="#"><i class="fab fa-twitter"></i></a>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="team-content">
+                                    <h3>Alexandre de Paula - O Bão</h3>
+                                    <span>Web Designer</span>
+                                </div>
                             </div>
-                            <div class="team-content">
-                                <h3>Alexandre de Paula - O Bão</h3>
-                                <span>Web Designer</span>
+                        </div>
+                        <!-- /team -->
+
+                    </div>
+                    <!-- /Row -->
+                </div>
+                <!-- /Container -->
+            </div>
+            <!-- /Team -->
+            <!-- Footer -->
+            <footer id="footer" class="sm-padding bg-dark">
+                <!-- Container -->
+                <div class="container">
+                    <!-- Row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- footer logo -->
+                            <div class="footer-logo">
+                                <a href="index.jsp"><img src="img/2.png" alt="logo"></a>
                             </div>
+                            <!-- /footer logo -->
+                            <!-- footer follow -->
+                            <ul class="footer-follow">
+                                <li><a href="#"><i class="fab fa-android" style="font-size:40px;"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter" style="font-size:40px;"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus-g" style="font-size:40px;"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram" style="font-size:40px;"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin" style="font-size:40px;"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube" style="font-size:40px;"></i></a></li>
+                            </ul>
+                            <!-- /footer follow -->
+                            <!-- footer copyright -->
+                            <div class="footer-copyright">
+                                <p>Copyright © 2019. All Rights Reserved. Designed by <a href="http://www.baoburgao.com.br" target="_blank">alexandrePS</a></p>
+                            </div>
+                            <!-- /footer copyright -->
                         </div>
                     </div>
-                    <!-- /team -->
-
+                    <!-- /Row -->
                 </div>
-                <!-- /Row -->
-            </div>
-            <!-- /Container -->
-        </div>
-        <!-- /Team -->
-        <!-- Footer -->
-        <footer id="footer" class="sm-padding bg-dark">
-            <!-- Container -->
-            <div class="container">
-                <!-- Row -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- footer logo -->
-                        <div class="footer-logo">
-                            <a href="index.jsp"><img src="img/2.png" alt="logo"></a>
-                        </div>
-                        <!-- /footer logo -->
-                        <!-- footer follow -->
-                        <ul class="footer-follow">
-                            <li><a href="#"><i class="fab fa-android" style="font-size:40px;"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter" style="font-size:40px;"></i></a></li>
-                            <li><a href="#"><i class="fab fa-google-plus-g" style="font-size:40px;"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram" style="font-size:40px;"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin" style="font-size:40px;"></i></a></li>
-                            <li><a href="#"><i class="fab fa-youtube" style="font-size:40px;"></i></a></li>
-                        </ul>
-                        <!-- /footer follow -->
-                        <!-- footer copyright -->
-                        <div class="footer-copyright">
-                            <p>Copyright © 2019. All Rights Reserved. Designed by <a href="http://www.baoburgao.com.br" target="_blank">alexandrePS</a></p>
-                        </div>
-                        <!-- /footer copyright -->
-                    </div>
+                <!-- /Container -->
+            </footer>
+            <!-- /Footer -->
+            <!-- Back to top -->
+            <div id="back-to-top"></div>
+            <!-- /Back to top -->
+            <!-- Preloader -->
+            <div id="preloader">
+                <div class="preloader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
-                <!-- /Row -->
             </div>
-            <!-- /Container -->
-        </footer>
-        <!-- /Footer -->
-        <!-- Back to top -->
-        <div id="back-to-top"></div>
-        <!-- /Back to top -->
-        <!-- Preloader -->
-        <div id="preloader">
-            <div class="preloader">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <!-- /Preloader -->
-        <!-- jQuery Plugins -->
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/owl.carousel.min.js"></script>
-        <script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
-    </body>
+            <!-- /Preloader -->
+            <!-- jQuery Plugins -->
+            <script type="text/javascript" src="js/jquery.min.js"></script>
+            <script type="text/javascript" src="js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+            <script type="text/javascript" src="js/jquery.magnific-popup.js"></script>
+            <script type="text/javascript" src="js/main.js"></script>
+            </body>
 
-</html>
+            </html>

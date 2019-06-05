@@ -12,27 +12,25 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Buffer;
-import model.Leitor;
+import model.TabelaHash;
 
 /**
  *
- * @author alexandre
+ * @author negro
  */
-public class PrepararProdutoAction implements Action {
+public class InserirKeyAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String fileName = request.getParameter("url");
-        Leitor leitor = new Leitor();
-        leitor.lerArquivo(Buffer.readFile(fileName));
-        request.setAttribute("conjuntos", leitor.getListaConjuntos());
-        request.setAttribute("url", fileName);
-
+        int tamKey2 = Integer.parseInt(request.getParameter("tamKey2"));
+        int tamHash2 = Integer.parseInt(request.getParameter("tamHash2"));
+        TabelaHash tabelaHash = new TabelaHash(tamHash2);
+        request.setAttribute("tabelaHash", tabelaHash);
+        request.setAttribute("tamKey2", tamKey2);
         try {
-            request.getRequestDispatcher("prepararProduto.jsp").forward(request, response);
+            request.getRequestDispatcher("sucess.jsp").forward(request, response);
         } catch (ServletException ex) {
-            Logger.getLogger(CriarArquivoAction.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InserirKeyAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

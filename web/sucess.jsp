@@ -52,96 +52,55 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
         <![endif]-->
     </head>
 
-    <body class="white-text">
-        
-        <!-- Header -->
-    <header id="home">
-        <!-- Background Image -->
-        <div class="bg-img" style="background-image: url('./img/venn.jpg');">
-            <div class="overlay"></div>
-        </div>
-        <!-- /Background Image -->
+    <body class="white-text">  
+    
+        <div class="container">
+            <div class=" white-text">
+                <!-- home content -->
+                <div class="home-content" >                        
+                    <div class="center ">
+                        <h3 class="text-danger">Digite a chave para inserção de 1 a ${tamKey2}</h3>
+                         <form method="post" action="FrontController?action=CriarTabelaPeq"> 
+                                    <div class= "form-group" > 
+                                        <label for= "key" >  </label> 
+                                        <input type= "number" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
+                                    </div> 
+                    </div>                        
+                    <div style=" max-height:400px; overflow-x:auto;">
+                        <table class=" table table-striped table-responsive text-primary" >            
+                            <thead>                  
+                                <tr> 
+                                    <th scope="col" > Posição </th>
+                                    <th scope="col" > Chave </th>
+                                    <th scope="col" > Valor </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="no" items="${tabela}">
+                                    <tr>
+                                        <td >
+                                            ${no.posicao}                                     
+                                        </td>
+                                        <td >
+                                            ${no.key}                                     
+                                        </td>
+                                        <td >
+                                            ${no.valor}                                     
+                                        </td>                             
 
-        <!-- Nav -->
-        <nav id="nav" class="navbar nav-transparent">
-            <div class="container">
-
-                <div class="navbar-header">
-                    <!-- Logo -->
-                    <div class="navbar-brand">
-                        <a href="index.jsp">
-                            <img class="logo" src="img/inter.png" alt="logo">
-                            <img class="logo-alt" src="img/inter.png" alt="logo">
-                        </a>
-                    </div>
-                    <!-- /Logo -->
-
-                    <!-- Collapse nav button -->
-                    <div class="nav-collapse">
-                        <span></span>
-                    </div>
-                    <!-- /Collapse nav button -->
-                </div>
-
-                <!--  Main navigation  -->
-               
-                <!-- /Main navigation -->
-            </div>
-        </nav>
-        <!-- /Nav -->
-        <!-- home wrapper -->
-        <div class="home-wrapper">
-            <div class="container">
-                <div class=" white-text">
-                    <!-- home content -->
-                    <div class="home-content" >                        
-                        <div class="center ">
-                            <h1 class="white-text">Lista de conjuntos e elementos</h1>
-                        </div>                        
-                        <div>
-                            <table class=" table text-primary">            
-                                <thead>                  
-                                    <tr> 
-                                        <th scope="col" colspan="2"> Lista de Elementos </th>
-                                        <th scope="col" colspan="2"> Lista de Conjuntos </th>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                <td colspan="2"><select name="comboElementos"> 
-                                        <c:forEach var="elemento" items="${elementos}">  
-                                            <option value=""> ${elemento.name} = ${elemento.value} </option>  
-                                        </c:forEach>  
-                                    </select>
-                                </td>
-                                <td>
-                                    <select colspan="2" name="comboConjuntos"> 
-                                        <c:forEach var="conjunto" items="${conjuntos}">  
-                                            <option value="">${conjunto.getGrupo()}</option>  
-                                        </c:forEach>  
-                                    </select>
-                                </td>
-                                </tbody> 
-                            </table>
-                        </div>
+                                </c:forEach>
+                            </tbody> 
+                        </table>
                     </div>
-                    <div class="container-fluid"> 
-                        <h3 class="white-text center" >lista de Operações</h3>
-                        <form method="post" action="FrontController?action=PrepararUniao&conjuntos=${conjuntos}&url=${url}"><button class="btn btn-warning btn-block"><h4>União</h4> </button></form>
-                        <form method="post" action="FrontController?action=PrepararInter&conjuntos=${conjuntos}&url=${url}"><button class="btn btn-warning btn-block"><h4>Interseção</h4> </button></form>
-                        <form method="post" action="FrontController?action=PrepararPertinencia&conjuntos=${conjuntos}&elementos=${elementos}&url=${url}" ><button class="btn btn-warning  btn-block"><h4>Pertence</h4> </button></form>
-                        <form method="post" action="FrontController?action=PrepararContidoIgual&conjuntos=${conjuntos}&url=${url}"><button class="btn btn-warning btn-block"><h4>Contido ou Igual</h4> </button></form>
-                        <form method="post" action="FrontController?action=PrepararPropContido&conjuntos=${conjuntos}&url=${url}"><button class="btn btn-warning btn-block"><h4>Contido Propriamente</h4></button></form>
-                        <form method="post" action="FrontController?action=PrepararProduto&conjuntos=${conjuntos}&url=${url}"><button class="btn btn-warning btn-block"><h4>Produto Cartesiano</h4> </button></form>
-                        <form method="post" action="FrontController?action=PrepararPartes&conjuntos=${conjuntos}&url=${url}"><button class="btn btn-warning btn-block"><h4>Conjunto das partes (P(X))</h4> </button></form>
-
-                    </div>
-                   
-                    <!-- /home content -->
-
                 </div>
-                <!-- /home wrapper -->
+
+
+                <!-- /home content -->
+
             </div>
-        </div>
-    </header>
+            <!-- /home wrapper -->
+    </div>
+
 </body>
 </html>
