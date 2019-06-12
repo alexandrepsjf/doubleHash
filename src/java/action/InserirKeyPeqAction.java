@@ -12,30 +12,26 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.No;
 import model.TabelaHash;
 
 /**
  *
  * @author negro
  */
-public class CriarTabelaPeqAction implements Action {
+public class InserirKeyPeqAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int tamKey2 = Integer.parseInt(request.getParameter("tamKey2"));
-        int tamHash2 = Integer.parseInt(request.getParameter("tamHash2"));
-        int segHash2 = Integer.parseInt(request.getParameter("segHash2"));
-        TabelaHash.getInstance().criaArray(tamHash2);
-        TabelaHash.getInstance().setPrimo1(tamHash2);
-        TabelaHash.getInstance().setPrimo2(segHash2);
-       TabelaHash tabela= TabelaHash.getInstance();
+        int key = Integer.parseInt(request.getParameter("key"));
+        TabelaHash.getInstance().insert(key, "teste");
+               TabelaHash tabela= TabelaHash.getInstance();
+
         request.getSession().setAttribute("tabelaHash", TabelaHash.getInstance());
-        request.getSession().setAttribute("array", TabelaHash.getInstance().getArray());
-        request.getSession().setAttribute("tamKey2", tamKey2);
         try {
             request.getRequestDispatcher("sucess.jsp").forward(request, response);
         } catch (ServletException ex) {
-            Logger.getLogger(CriarTabelaPeqAction.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InserirKeyPeqAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

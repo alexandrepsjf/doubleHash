@@ -1,3 +1,4 @@
+<%@page import="model.No"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%> 
 <%@page contentType="text/html" pageEncoding="utf-8"%>
@@ -53,54 +54,59 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
     </head>
 
     <body class="white-text">  
-    
+
         <div class="container">
             <div class=" white-text">
                 <!-- home content -->
-                <div class="home-content" >                        
-                    <div class="center ">
-                        <h3 class="text-danger">Digite a chave para inserção de 1 a ${tamKey2}</h3>
-                         <form method="post" action="FrontController?action=CriarTabelaPeq"> 
-                                    <div class= "form-group" > 
-                                        <label for= "key" >  </label> 
-                                        <input type= "number" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
-                                    </div> 
-                    </div>                        
-                    <div style=" max-height:400px; overflow-x:auto;">
-                        <table class=" table table-striped table-responsive text-primary" >            
-                            <thead>                  
-                                <tr> 
-                                    <th scope="col" > Posição </th>
-                                    <th scope="col" > Chave </th>
-                                    <th scope="col" > Valor </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="no" items="${tabela}">
-                                    <tr>
-                                        <td >
-                                            ${no.posicao}                                     
-                                        </td>
-                                        <td >
-                                            ${no.key}                                     
-                                        </td>
-                                        <td >
-                                            ${no.valor}                                     
-                                        </td>                             
+                <div class="home-content" >
+                    <% No[] array = (No[]) request.getAttribute("array"); %>
+                    <form method="post" action="FrontController?action=InserirKeyPeq"> 
+                        <div class="center ">
+                            <h3 class="text-danger">Digite a chave para inserção de 1 a ${tamKey2} </h3>
 
+                            <div class= "form-group" > 
+                                <label for= "key" >  </label> 
+                                <input type= "number" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
+                            </div> 
+                            <button class="btn btn-success"> Inserir</button>
+
+                        </div>                        
+                        <div style=" max-height:400px; overflow-x:auto;">
+                            <table class=" table table-striped table-responsive text-primary" >            
+                                <thead>                  
+                                    <tr> 
+                                        <th scope="col" > Posição </th>
+                                        <th scope="col" > Chave </th>
+                                        <th scope="col" > Valor </th>
                                     </tr>
-                                </c:forEach>
-                            </tbody> 
-                        </table>
-                    </div>
-                </div>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="no" items="${array}">
+                                        <tr>
+                                            <td >
+                                                ${no.posicao}                                     
+                                            </td>
+                                            <td >
+                                                ${no.key}                                     
+                                            </td>
+                                            <td >
+                                                ${no.valor}                                     
+                                            </td>                             
 
+                                        </tr>
+                                    </c:forEach>
+                                </tbody> 
+                            </table>
+                        </div>
+                    </form>
+
+                </div>
 
                 <!-- /home content -->
 
             </div>
             <!-- /home wrapper -->
-    </div>
+        </div>
 
-</body>
+    </body>
 </html>
