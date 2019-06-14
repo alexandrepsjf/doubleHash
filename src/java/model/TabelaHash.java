@@ -84,7 +84,7 @@ public class TabelaHash {
     }
 
     private int hash2(int valor) {
-        int hashValor = valor % primo2;
+        int hashValor = primo2-(valor % primo2);
         return hashValor;
     }
 

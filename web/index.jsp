@@ -218,11 +218,15 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                                         </select> <div class="form-group">
                                             <label for="segHash2">Selecione o numero primo p/ segundo hash</label>
                                             <select class="form-control" id= "segHash2" name="segHash2" value="10" >
+                                                <option value="3">2</option>
                                                 <option value="3">3</option>
                                                 <option value="5">5</option>
                                                 <option value="7">7</option>                                           
                                                 <option value="11">11</option>
-                                                <option value="13">13</option>        
+                                                <option value="13">13</option> 
+                                                <option value="7">17</option>                                           
+                                                <option value="11">19</option>
+                                                <option value="13">23</option>        
                                             </select>
                                             <button type="submit" class="btn btn-warning">Enviar</button>
                                         </div>                                         
