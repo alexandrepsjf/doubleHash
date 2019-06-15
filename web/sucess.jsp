@@ -66,7 +66,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 
                             <div class= "form-group" > 
                                 <label for= "key" >  </label> 
-                                <input type= "number" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
+                                <input type= "number" max="${tamKey2}" min="1" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
                             </div> 
                             <button class="btn btn-success"> Inserir</button>
 

@@ -70,7 +70,7 @@ public class TabelaHash {
         this.tamanho=tam;
         for (int i = 0; i < this.array.length; i++) {
             this.array[i] = new No();
-            this.array[i].setPosicao(i + 1);
+            this.array[i].setPosicao(i+1);
         }
     }
 
@@ -89,18 +89,23 @@ public class TabelaHash {
     }
 
     public void insert(int key, String value) {
+        String historico="sem colisão";
         if (ocupacao == tamanho) {
             System.out.println("Table full");
             return;
         }
         int hash1 = hash1(key);
         int hash2 = hash2(key);
+        String anterior="";
         while (array[hash1].getKey() != 0) {
+             anterior+=hash1;
             hash1 += hash2;
             hash1 %= tamanho;
+            historico=anterior+" --> "+array[hash1].getPosicao();
+            anterior="";
         }
         array[hash1].setKey(key);
-        array[hash1].setValor("sem colisão");
+        array[hash1].setValor(historico);
       
         ocupacao++;
     }

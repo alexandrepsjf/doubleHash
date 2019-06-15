@@ -143,7 +143,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                                     </div> 
                                     <div class= "form-group" > 
                                         <label for= "tamHash1" > Tabela Hash </label> 
-                                        <input type= "number" class= "form-control" id= "tamHash1" name="tamHash1" placeholder= "Tamanho da tabela hash" > 
+                                        <input type= "number" min="1" class= "form-control" id= "tamHash1" name="tamHash1" placeholder= "Tamanho da tabela hash" > 
                                         <button type="submit" class="btn btn-warning">Enviar</button>
                                     </div> 
                                 </form> 
@@ -159,7 +159,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                                 <form method="post" action="FrontController?action=CriarTabelaPeq"> 
                                     <div class= "form-group" > 
                                         <label for= "tamKey2" > Chaves </label> 
-                                        <input type= "number" class= "form-control" id= "tamKey2" name="tamKey2" placeholder= "Numero de chaves" > 
+                                        <input type= "number" min="1" class= "form-control" id= "tamKey2" name="tamKey2" placeholder= "Numero de chaves" > 
                                     </div>          
 
                                     <div class="form-group">
