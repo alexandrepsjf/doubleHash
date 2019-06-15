@@ -101,7 +101,7 @@ public class TabelaHash {
              anterior+=hash1;
             hash1 += hash2;
             hash1 %= tamanho;
-            historico=anterior+" --> "+array[hash1].getPosicao();
+            historico=anterior+" --> "+hash1; 
             anterior="";
         }
         array[hash1].setKey(key);

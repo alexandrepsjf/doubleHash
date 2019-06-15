@@ -25,9 +25,8 @@ public class InserirKeyPeqAction implements Action {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int key = Integer.parseInt(request.getParameter("key"));
         TabelaHash.getInstance().insert(key, "teste");
-               TabelaHash tabela= TabelaHash.getInstance();
-
-        request.getSession().setAttribute("tabelaHash", TabelaHash.getInstance());
+        TabelaHash tabela = TabelaHash.getInstance();
+        request.getSession().setAttribute("tabelaHash", tabela);
         try {
             request.getRequestDispatcher("sucess.jsp").forward(request, response);
         } catch (ServletException ex) {
