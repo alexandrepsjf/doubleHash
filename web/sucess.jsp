@@ -59,18 +59,34 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             <div class=" white-text">
                 <!-- home content -->
                 <div class="home-content" >
-                    <% No[] array = (No[]) request.getAttribute("array"); %>
-                    <form method="post" action="FrontController?action=InserirKeyPeq"> 
-                        <div class="center ">
-                            <h3 class="text-danger">Digite a chave para inserção de 1 a ${tamKey2} </h3>
-
-                            <div class= "form-group" > 
-                                <label for= "key" >  </label> 
-                                <input type= "number" max="${tamKey2}" min="1" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
-                            </div> 
-                            <button class="btn btn-success"> Inserir</button>
-
-                        </div>                        
+                    <% No[] array = (No[]) request.getAttribute("array");%>
+                    <div class="center ">
+                        <h3 class="text-danger">Digite a chave para inserção de 1 a ${tamKey2} </h3>
+                        <div class="col-lg-4">
+                            <form method="post" action="FrontController?action=InserirKeyPeq"> 
+                                <div class= "form-group" > 
+                                    <label for= "key" >  </label> 
+                                    <input type= "number" max="${tamKey2}" min="1" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
+                                </div> 
+                                <button class="btn btn-success"> Inserir</button>
+                            </form>
+                        </div> <div class="col-lg-4">
+                            <form method="post" action="FrontController?action=InserirKeyPeq"> 
+                                <div class= "form-group" > 
+                                    <label for= "key" >  </label> 
+                                    <input type= "number" max="${tamKey2}" min="1" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
+                                </div> 
+                                <button class="btn btn-success"> Buscar</button>
+                            </form>
+                        </div> <div class="col-lg-4">
+                            <form method="post" action="FrontController?action=InserirKeyPeq"> 
+                                <div class= "form-group" > 
+                                    <label for= "key" >  </label> 
+                                    <input type= "number" max="${tamKey2}" min="1" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
+                                </div> 
+                                <button class="btn btn-success"> Remover</button>
+                            </form>
+                        </div> 
                         <div style=" max-height:400px; overflow-x:auto;">
                             <table class=" table table-striped table-responsive text-primary" >            
                                 <thead>                  
@@ -98,15 +114,15 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                                 </tbody> 
                             </table>
                         </div>
-                    </form>
+
+                    </div>
+                    </div>
+
+                    <!-- /home content -->
 
                 </div>
-
-                <!-- /home content -->
-
+                <!-- /home wrapper -->
             </div>
-            <!-- /home wrapper -->
-        </div>
 
     </body>
 </html>
