@@ -96,12 +96,15 @@ public class TabelaHash {
         }
         int hash1 = hash1(key);
         int hash2 = hash2(key);
+        if(get(key)!=null){
+            return;
+        }
         String anterior="";
         anterior+=hash1;
-        if(array[hash1].getKey() == 0){
+        if(array[hash1].getKey() == 0 | array[hash1].getKey() == -1 ){
             historico="Sem colisão";
         }
-        while (array[hash1].getKey() != 0) {             
+        while (array[hash1].getKey() > 0) {             
             hash1 += hash2;
             hash1 %= tamanho;
             historico+=anterior+" --> "+hash1; 
@@ -116,7 +119,7 @@ public class TabelaHash {
         int hash1 = hash1(key);
         int hash2 = hash2(key);
         int cont = 0;
-        while (array[hash1] != null || cont < tamanho) {
+        while (array[hash1].getKey() != 0 || cont > tamanho) {
             if (array[hash1].getKey() == key) {
                 return array[hash1];
             }
@@ -128,14 +131,16 @@ public class TabelaHash {
     }
 
     public No remove(int key) {
+       
         int hash1 = hash1(key);
         int hash2 = hash2(key);
         int cont = 0;
-        while (array[hash1] != null || cont > tamanho) {
+        while (array[hash1].getKey() != 0 || cont > tamanho) {
             if (array[hash1].getKey() == key) {
                 No temp = array[hash1];
-                array[hash1] = null;
+                array[hash1].key = -1;
                 ocupacao--;
+                System.out.println(array[hash1].key);
                 return temp;
             }
             hash1 += hash2;
@@ -143,6 +148,12 @@ public class TabelaHash {
             cont++;
         }
         return null;
+    }
+    public void limpa(){
+        No[] arrayTemp = array.clone();        
+        criaArray(arrayTemp.length);
+        for(int k =0;k<arrayTemp.length;k++)
+            insert(arrayTemp[k].key);        
     }
 
 }

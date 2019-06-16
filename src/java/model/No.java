@@ -10,7 +10,7 @@ package model;
  * @author negro
  */
 public class No {
-    int posicao;
+     int posicao;
      int key;
      String valor;
 
