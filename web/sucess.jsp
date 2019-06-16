@@ -54,7 +54,36 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
     </head>
 
     <body class="white-text">  
+    <header id="home">
+        <!-- Background Image -->
+        <div class="bg-img" style="background-image: url('./img/venn.jpg');">
+            <div class="overlay"></div>
+        </div>
+        <!-- /Background Image -->
 
+        <!-- Nav -->
+        <nav id="nav" class="navbar nav-transparent">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <!-- Logo -->
+                    <div class="navbar-brand">
+                        <a href="index.jsp">
+                            <img class="logo" src="img/inter.png" alt="logo">
+                            <img class="logo-alt" src="img/inter.png" alt="logo">
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+
+                    <!-- Collapse nav button -->
+                    <div class="nav-collapse">
+                        <span></span>
+                    </div>
+                    <!-- /Collapse nav button -->
+                </div>
+
+            </div>
+        </nav>
         <div class="container">
             <div class=" white-text">
                 <!-- home content -->
@@ -62,7 +91,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                     <% No[] array = (No[]) request.getAttribute("array");%>
                     <div class="center ">
                         <h3 class="text-danger">Digite a chave para inserção/busca/remoção de 1 a ${tamKey2} </h3>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3 center">
                             <form method="post" action="FrontController?action=InserirKeyPeq"> 
                                 <div class= "form-group" > 
                                     <label for= "key" >  </label> 
@@ -70,7 +99,8 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                                 </div> 
                                 <button class="btn btn-success"> Inserir</button>
                             </form>
-                        </div> <div class="col-lg-4">
+                        </div> 
+                        <div class="col-lg-3 center">
                             <form method="post" action="FrontController?action=BuscarKeyPeq"> 
                                 <div class= "form-group" > 
                                     <label for= "key" >  </label> 
@@ -78,7 +108,8 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                                 </div> 
                                 <button class="btn btn-warning"> Buscar</button>
                             </form>
-                        </div> <div class="col-lg-4">
+                        </div>
+                        <div class="col-lg-3 center">
                             <form method="post" action="FrontController?action=RemoverKeyPeq"> 
                                 <div class= "form-group" > 
                                     <label for= "key" >  </label> 
@@ -86,9 +117,14 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                                 </div> 
                                 <button class="btn btn-danger"> Remover</button>
                             </form>
+                        </div>
+                        <div class="col-lg-3 center">
+                            <form method="post" action="FrontController?action=RemoverKeyPeq"> 
+                                <button class="center  btn btn-danger"> Rearranjar</button>
+                            </form>
                         </div> 
-                        <div style=" max-height:400px; overflow-x:auto;">
-                            <table class=" table table-striped table-responsive text-primary" >            
+                        <div class="col-lg-12 center" style=" max-height:400px; overflow-x:auto;">
+                            <table class=" table  table-responsive white-text" >            
                                 <thead>                  
                                     <tr> 
                                         <th scope="col" > Posição </th>
@@ -116,13 +152,13 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                         </div>
 
                     </div>
-                    </div>
-
-                    <!-- /home content -->
-
                 </div>
-                <!-- /home wrapper -->
+
+                <!-- /home content -->
+
             </div>
+            <!-- /home wrapper -->
+        </div>
 
     </body>
 </html>
