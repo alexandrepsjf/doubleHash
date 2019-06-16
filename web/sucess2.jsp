@@ -59,70 +59,41 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
             <div class=" white-text">
                 <!-- home content -->
                 <div class="home-content" >
-                    <% No[] array = (No[]) request.getAttribute("array");%>
                     <div class="center ">
-                        <h3 class="text-danger">Digite a chave para inserção/busca/remoção de 1 a ${tamKey2} </h3>
+                        <h3 class="text-danger">Digite a chave para inserção/busca/remoção de 1 a ${tamKey1} </h3>
                         <div class="col-lg-4">
-                            <form method="post" action="FrontController?action=InserirKeyPeq"> 
+                            <form method="post" action="FrontController?action=InserirKeyGrd"> 
                                 <div class= "form-group" > 
                                     <label for= "key" >  </label> 
-                                    <input type= "number" max="${tamKey2}" min="1" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
+                                    <input type= "number" max="${tamKey1}" min="1" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
                                 </div> 
                                 <button class="btn btn-success"> Inserir</button>
                             </form>
                         </div> <div class="col-lg-4">
-                            <form method="post" action="FrontController?action=BuscarKeyPeq"> 
+                            <form method="post" action="FrontController?action=BuscarKeyGrd"> 
                                 <div class= "form-group" > 
                                     <label for= "key" >  </label> 
-                                    <input type= "number" max="${tamKey2}" min="1" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
+                                    <input type= "number" max="${tamKey1}" min="1" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
                                 </div> 
                                 <button class="btn btn-warning"> Buscar</button>
                             </form>
                         </div> <div class="col-lg-4">
-                            <form method="post" action="FrontController?action=RemoverKeyPeq"> 
+                            <form method="post" action="FrontController?action=RemoverKeyGrd"> 
                                 <div class= "form-group" > 
                                     <label for= "key" >  </label> 
-                                    <input type= "number" max="${tamKey2}" min="1" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
+                                    <input type= "number" max="${tamKey1}" min="1" class= "form-control" id= "key" name="key" placeholder= "Numero da chave" > 
                                 </div> 
                                 <button class="btn btn-danger"> Remover</button>
                             </form>
                         </div> 
-                        <div style=" max-height:400px; overflow-x:auto;">
-                            <table class=" table table-striped table-responsive text-primary" >            
-                                <thead>                  
-                                    <tr> 
-                                        <th scope="col" > Posição </th>
-                                        <th scope="col" > Chave </th>
-                                        <th scope="col" > Valor </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach var="no" items="${array}">
-                                        <tr>
-                                            <td >
-                                                ${no.posicao}                                     
-                                            </td>
-                                            <td >
-                                                ${no.key}                                     
-                                            </td>
-                                            <td >
-                                                ${no.valor}                                     
-                                            </td>                             
-
-                                        </tr>
-                                    </c:forEach>
-                                </tbody> 
-                            </table>
-                        </div>
-
                     </div>
-                    </div>
-
-                    <!-- /home content -->
-
                 </div>
-                <!-- /home wrapper -->
+
+                <!-- /home content -->
+
             </div>
+            <!-- /home wrapper -->
+        </div>
 
     </body>
 </html>

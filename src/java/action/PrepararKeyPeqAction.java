@@ -22,10 +22,8 @@ public class PrepararKeyPeqAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int tamKey2 = Integer.parseInt(request.getParameter("tamKey2"));
         TabelaHash tabelaHash=(TabelaHash)request.getAttribute("tabelaHash");         
         request.setAttribute("tabelaHash", tabelaHash);
-        request.setAttribute("tamKey2", tamKey2);
         try {
             request.getRequestDispatcher("sucess.jsp").forward(request, response);
         } catch (ServletException ex) {

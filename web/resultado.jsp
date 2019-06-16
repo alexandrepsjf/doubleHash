@@ -115,18 +115,9 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                         </div>
                         <div class="row">
                             <div class=" center col-lg-6"> 
-                                <form method="post" class="success" action="FrontController?action=CriarArquivo&url=${url}"><button class="btn btn-success"> Voltar</button></form>
+                                <form method="post" class="success" action="sucess.jsp"><button class="btn btn-success"> Voltar</button></form>
                             </div>
-                            <div class=" center col-lg-6"> 
-                                <form method="post" class="success" action="FrontController?action=CriarReverterProduto&url=${url}&resultado=${resultado}">
-                                    <button class="btn btn-danger" <c:if test="${Reverter == false}"> disabled </c:if> > Reverter</button>
-                                </form>
-                                    <div >
-                                        <h3 class="text-warning shadowBlack"<c:if test="${Reverter == false}"> hidden </c:if>>Operação Reversivel. Deseja Reverter?</h3>
-                                    <div <c:if test="${NA == true}"> hidden </c:if>><h2 class="text-warning shadowBlack"<c:if test="${Reverter == true}"> hidden </c:if>>Operação Irreversível. </h2></div>
-                                    <h2 class="text-warning shadowBlack"<c:if test="${NA != true}"> hidden </c:if>>Reverter Não se Aplica. </h2>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                     <!-- /home content -->

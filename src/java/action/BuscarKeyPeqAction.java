@@ -12,29 +12,34 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.No;
 import model.TabelaHash;
 
 /**
  *
  * @author negro
  */
-public class CriarTabelaPeqAction implements Action {
+public class BuscarKeyPeqAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int tamKey2 = Integer.parseInt(request.getParameter("tamKey2"));
-        int tamHash2 = Integer.parseInt(request.getParameter("tamHash2"));
-        int segHash2 = Integer.parseInt(request.getParameter("segHash2"));
-        TabelaHash.getInstance().criaArray(tamHash2);
-        TabelaHash.getInstance().setPrimo1(tamHash2);
-        TabelaHash.getInstance().setPrimo2(segHash2);
+        int key = Integer.parseInt(request.getParameter("key"));
+        No result = TabelaHash.getInstance().get(key);
+        String resultado = "";
+        if (result != null) {
+            resultado = "A chave foi localizada na posição " + result.getPosicao() + "<br> e com histórico de colisões : " + result.getValor();
+        } else {
+            resultado = "Chave não localizada";
+        }
+        request.getSession().setAttribute("resultado", resultado);
+        request.getSession().setAttribute("action", "PrepararKeyPeq");
         request.getSession().setAttribute("tabelaHash", TabelaHash.getInstance());
         request.getSession().setAttribute("array", TabelaHash.getInstance().getArray());
-        request.getSession().setAttribute("tamKey2", tamKey2);
+
         try {
-            request.getRequestDispatcher("sucess.jsp").forward(request, response);
+            request.getRequestDispatcher("resultado.jsp").forward(request, response);
         } catch (ServletException ex) {
-            Logger.getLogger(CriarTabelaPeqAction.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BuscarKeyPeqAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

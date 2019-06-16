@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.No;
 import model.TabelaHash;
 
 /**
@@ -24,7 +23,7 @@ public class InserirKeyPeqAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int key = Integer.parseInt(request.getParameter("key"));
-        TabelaHash.getInstance().insert(key, "teste");
+        TabelaHash.getInstance().insert(key);
         TabelaHash tabela = TabelaHash.getInstance();
         request.getSession().setAttribute("tabelaHash", tabela);
         try {

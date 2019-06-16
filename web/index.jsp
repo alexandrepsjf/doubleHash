@@ -247,31 +247,21 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                     <!-- why choose us content -->
                     <div class="col-md-6">
                         <div class="section-header">
-                            <h2 class="title">Conjunto</h2>
+                            <h2 class="title">tabela hash</h2>
                         </div>
                         <h4>Definição</h4>
 
-                        <h3>Coleção de zero ou mais objetos distintos, chamados Elementos do
-                            conjunto os quais não possuem qualquer ordem associada</h3>
+                        <h3>Em ciência da computação, 
+                            uma tabela de dispersão (também conhecida por tabela de espalhamento ou tabela hash, 
+                            do inglês hash) é uma estrutura de dados especial, 
+                            que associa chaves de pesquisa a valores. 
+                        </h3>
                         <div class="feature">
                             <i class="fa fa-check"></i>
-                            <p>estrutura que agrupa objetos.</p>
+                            <p>Seu objetivo é, a partir de uma chave simples, 
+                                fazer uma busca rápida e obter o valor desejado.</p>
                         </div>
-                        <div class="feature">
-                            <i class="fa fa-check"></i>
-                            <p>constitui uma base para construir estruturas mais complexas.</p>
-                        </div>
-                        <h4>Informalmente</h4>
 
-                        <div class="feature">
-                            <i class="fa fa-check"></i>
-                            <p>coleção, sem repetições e sem qualquer ordenação, de objetos
-                                denominados elementos.</p>
-                        </div>
-                        <div class="feature">
-                            <i class="fa fa-check"></i>
-                            <p>elemento: pode designar um objeto concreto ou abstrato.</p>
-                        </div>
                     </div>
                     <!-- /why choose us content -->
                     <!-- About slider -->
@@ -306,6 +296,23 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                                 </div>
                                 <div class="team-content">
                                     <h3>Alexandre de Paula - O Bão</h3>
+                                    <span>Web Designer</span>
+                                </div>
+                            </div>
+                        </div><div class=" col-sm-offset-4 col-sm-4">
+                            <div class="team">
+                                <div class="team-img">
+                                    <img class="img-responsive" src="./img/icaro.jpg" alt="">
+                                    <div class="overlay">
+                                        <div class="team-social">
+                                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                                            <a href="#"><i class="fab fa-twitter"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="team-content">
+                                    <h3>Icaro Alvarenga - O Cara</h3>
                                     <span>Web Designer</span>
                                 </div>
                             </div>

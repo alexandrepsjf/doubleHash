@@ -70,7 +70,7 @@ public class TabelaHash {
         this.tamanho=tam;
         for (int i = 0; i < this.array.length; i++) {
             this.array[i] = new No();
-            this.array[i].setPosicao(i+1);
+            this.array[i].setPosicao(i);
         }
     }
 
@@ -88,8 +88,8 @@ public class TabelaHash {
         return hashValor;
     }
 
-    public void insert(int key, String value) {
-        String historico="sem colisão";
+    public void insert(int key) {
+        String historico="";
         if (ocupacao == tamanho) {
             System.out.println("Table full");
             return;
@@ -97,16 +97,18 @@ public class TabelaHash {
         int hash1 = hash1(key);
         int hash2 = hash2(key);
         String anterior="";
-        while (array[hash1].getKey() != 0) {
-             anterior+=hash1;
+        anterior+=hash1;
+        if(array[hash1].getKey() == 0){
+            historico="Sem colisão";
+        }
+        while (array[hash1].getKey() != 0) {             
             hash1 += hash2;
             hash1 %= tamanho;
-            historico=anterior+" --> "+hash1; 
+            historico+=anterior+" --> "+hash1; 
             anterior="";
         }
         array[hash1].setKey(key);
-        array[hash1].setValor(historico);
-      
+        array[hash1].setValor(historico);      
         ocupacao++;
     }
 
@@ -114,7 +116,7 @@ public class TabelaHash {
         int hash1 = hash1(key);
         int hash2 = hash2(key);
         int cont = 0;
-        while (array[hash1] != null || cont > tamanho) {
+        while (array[hash1] != null || cont < tamanho) {
             if (array[hash1].getKey() == key) {
                 return array[hash1];
             }
