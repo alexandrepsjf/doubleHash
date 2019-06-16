@@ -12,23 +12,24 @@ import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import model.TabelaHash;
 
 /**
  *
- * @author alexandre
+ * @author negro
  */
-public class PrepararQuadradoAction implements Action {
+public class InserirKeyGrdAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String fileName = request.getParameter("url");      
-        request.setAttribute("url", fileName);
-
+        int key = Integer.parseInt(request.getParameter("key"));
+        TabelaHash.getInstance().insert(key);
+        TabelaHash tabela = TabelaHash.getInstance();
+        request.getSession().setAttribute("tabelaHash", tabela);
         try {
-            request.getRequestDispatcher("prepararQuadrado.jsp").forward(request, response);
+            request.getRequestDispatcher("sucess.jsp").forward(request, response);
         } catch (ServletException ex) {
-            Logger.getLogger(CriarTabelaPeqAction.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(InserirKeyGrdAction.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
