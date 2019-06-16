@@ -282,7 +282,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                         </div>
                         <!-- /Section header -->
                         <!-- team -->
-                        <div class=" col-sm-offset-4 col-sm-4">
+                        <div class=" col-sm-offset-2 col-sm-4">
                             <div class="team">
                                 <div class="team-img">
                                     <img class="img-responsive" src="./img/alexandre.jpg" alt="">
@@ -299,7 +299,8 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                                     <span>Web Designer</span>
                                 </div>
                             </div>
-                        </div><div class=" col-sm-offset-4 col-sm-4">
+                        </div>
+                        <div class="  col-sm-4">
                             <div class="team">
                                 <div class="team-img">
                                     <img class="img-responsive" src="./img/icaro.jpg" alt="">
