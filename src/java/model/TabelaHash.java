@@ -21,14 +21,14 @@ public class TabelaHash {
     public static synchronized TabelaHash getInstance() {
         if (tabelaHash == null) {
             tabelaHash = new TabelaHash();
-            
+
         }
 
         return tabelaHash;
     }
 
     private TabelaHash() {
-        
+
     }
 
     public No[] getArray() {
@@ -60,14 +60,13 @@ public class TabelaHash {
         this.primo2 = primo2;
     }
 
-   
     public void setArray(No[] array) {
         this.array = array;
     }
 
     public void criaArray(int tam) {
         this.setArray(new No[tam]);
-        this.tamanho=tam;
+        this.tamanho = tam;
         for (int i = 0; i < this.array.length; i++) {
             this.array[i] = new No();
             this.array[i].setPosicao(i);
@@ -84,34 +83,34 @@ public class TabelaHash {
     }
 
     private int hash2(int valor) {
-        int hashValor = primo2-(valor % primo2);
+        int hashValor = primo2 - (valor % primo2);
         return hashValor;
     }
 
     public void insert(int key) {
-        String historico="";
+        String historico = "";
         if (ocupacao == tamanho) {
             System.out.println("Table full");
             return;
         }
         int hash1 = hash1(key);
         int hash2 = hash2(key);
-        if(get(key)!=null){
+        if (get(key) != null) {
             return;
         }
-        String anterior="";
-        anterior+=hash1;
-        if(array[hash1].getKey() == 0 | array[hash1].getKey() == -1 ){
-            historico="Sem colisão";
+        String anterior = "";
+        anterior += hash1;
+        if (array[hash1].getKey() == 0 | array[hash1].getKey() == -1) {
+            historico = "Sem colisão";
         }
-        while (array[hash1].getKey() > 0) {             
+        while (array[hash1].getKey() > 0) {
             hash1 += hash2;
             hash1 %= tamanho;
-            historico+=anterior+" --> "+hash1; 
-            anterior="";
+            historico += anterior + " --> " + hash1;
+            anterior = "";
         }
         array[hash1].setKey(key);
-        array[hash1].setValor(historico);      
+        array[hash1].setValor(historico);
         ocupacao++;
     }
 
@@ -131,7 +130,7 @@ public class TabelaHash {
     }
 
     public No remove(int key) {
-       
+
         int hash1 = hash1(key);
         int hash2 = hash2(key);
         int cont = 0;
@@ -149,11 +148,15 @@ public class TabelaHash {
         }
         return null;
     }
-    public void limpa(){
-        No[] arrayTemp = array.clone();        
-        criaArray(arrayTemp.length);
-        for(int k =0;k<arrayTemp.length;k++)
-            insert(arrayTemp[k].key);        
+
+    public void limpa() {
+        No[] arrayTemp = array.clone();
+       this.criaArray(arrayTemp.length);
+        for (int k = 0; k < arrayTemp.length; k++) {
+            if (arrayTemp[k].key > 0) {
+                this.insert(arrayTemp[k].key);
+            }
+        }
     }
 
 }

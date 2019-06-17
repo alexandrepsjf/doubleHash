@@ -119,7 +119,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                             </form>
                         </div>
                         <div class="col-lg-3 center">
-                            <form method="post" action="FrontController?action=RemoverKeyPeq"> 
+                            <form method="post" action="FrontController?action=RearranjarTabela"> 
                                 <button class="center  btn btn-danger"> Rearranjar</button>
                             </form>
                         </div> 

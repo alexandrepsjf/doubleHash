@@ -32,9 +32,9 @@ public class BuscarKeyPeqAction implements Action {
             resultado = "Chave não localizada";
         }
         request.getSession().setAttribute("resultado", resultado);
-        request.getSession().setAttribute("action", "PrepararKeyPeq");
-        request.getSession().setAttribute("tabelaHash", TabelaHash.getInstance());
-        request.getSession().setAttribute("array", TabelaHash.getInstance().getArray());
+//        request.getSession().setAttribute("action", "PrepararKeyPeq");
+//        request.getSession().setAttribute("tabelaHash", TabelaHash.getInstance());
+//        request.getSession().setAttribute("array", TabelaHash.getInstance().getArray());
 
         try {
             request.getRequestDispatcher("resultado.jsp").forward(request, response);
