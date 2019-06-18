@@ -25,7 +25,7 @@ public class PrepararKeyGrdAction implements Action {
         TabelaHash tabelaHash=(TabelaHash)request.getAttribute("tabelaHash");         
         request.setAttribute("tabelaHash", tabelaHash);
         try {
-            request.getRequestDispatcher("sucess.jsp").forward(request, response);
+            request.getRequestDispatcher("sucess2.jsp").forward(request, response);
         } catch (ServletException ex) {
             Logger.getLogger(PrepararKeyGrdAction.class.getName()).log(Level.SEVERE, null, ex);
         }

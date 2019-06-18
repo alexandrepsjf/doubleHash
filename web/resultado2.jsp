@@ -101,7 +101,7 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
 
                     <div class="container-fluid white-text">     
                         <div class="animated bounceInDown">                                 
-                            <h3 class="white-text break_word" style="
+                            <h2 class="white-text break_word" style="
                                 overflow-wrap: break-word;
                                 word-wrap: break-word;
 
@@ -111,11 +111,11 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
                                 -ms-hyphens: auto;
                                 -moz-hyphens: auto;
                                 -webkit-hyphens: auto;
-                                hyphens: auto;" >${resultado}</h3> 
+                                hyphens: auto;" >${resultado}</h2> 
                         </div>
                         <div class="row">
                             <div class=" center col-lg-6"> 
-                                <form method="post" class="success" action="FrontController?action=CriarArquivoRelacaoComposta&url=${url}"><button class="btn btn-success"> Voltar</button></form>
+                                <form method="post" class="success" action="sucess2.jsp"><button class="btn btn-success"> Voltar</button></form>
                             </div>
                             
                         </div>

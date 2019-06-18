@@ -22,17 +22,18 @@ public class CriarTabelaGrdAction implements Action {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int tamKey2 = Integer.parseInt(request.getParameter("tamKey2"));
-        int tamHash2 = Integer.parseInt(request.getParameter("tamHash2"));
-        int segHash2 = Integer.parseInt(request.getParameter("segHash2"));
-        TabelaHash.getInstance().criaArray(tamHash2);
-        TabelaHash.getInstance().setPrimo1(tamHash2);
-        TabelaHash.getInstance().setPrimo2(segHash2);
+        
+        int tamKey1 = Integer.parseInt(request.getParameter("tamKey1"));
+        int tamHash1 = Integer.parseInt(request.getParameter("tamHash1"));
+        int segHash1 = Integer.parseInt(request.getParameter("segHash1"));
+        TabelaHash.getInstance().criaArray(tamHash1);
+        TabelaHash.getInstance().setPrimo1(tamHash1);
+        TabelaHash.getInstance().setPrimo2(segHash1);
         request.getSession().setAttribute("tabelaHash", TabelaHash.getInstance());
         request.getSession().setAttribute("array", TabelaHash.getInstance().getArray());
-        request.getSession().setAttribute("tamKey2", tamKey2);
+        request.getSession().setAttribute("tamKey1", tamKey1);
         try {
-            request.getRequestDispatcher("sucess.jsp").forward(request, response);
+            request.getRequestDispatcher("sucess2.jsp").forward(request, response);
         } catch (ServletException ex) {
             Logger.getLogger(CriarTabelaGrdAction.class.getName()).log(Level.SEVERE, null, ex);
         }

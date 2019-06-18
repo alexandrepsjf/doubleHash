@@ -27,7 +27,7 @@ public class InserirKeyGrdAction implements Action {
         TabelaHash tabela = TabelaHash.getInstance();
         request.getSession().setAttribute("tabelaHash", tabela);
         try {
-            request.getRequestDispatcher("sucess.jsp").forward(request, response);
+            request.getRequestDispatcher("sucess2.jsp").forward(request, response);
         } catch (ServletException ex) {
             Logger.getLogger(InserirKeyGrdAction.class.getName()).log(Level.SEVERE, null, ex);
         }

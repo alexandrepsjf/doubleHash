@@ -32,12 +32,12 @@ public class RemoverKeyGrdAction implements Action {
             resultado = "Chave não localizada";
         }
         request.getSession().setAttribute("resultado", resultado);
-        request.getSession().setAttribute("action", "PrepararKeyPeq");
+        request.getSession().setAttribute("action", "PrepararKeyGrd");
         request.getSession().setAttribute("tabelaHash", TabelaHash.getInstance());
         request.getSession().setAttribute("array", TabelaHash.getInstance().getArray());
 
         try {
-            request.getRequestDispatcher("resultado.jsp").forward(request, response);
+            request.getRequestDispatcher("resultado2 .jsp").forward(request, response);
         } catch (ServletException ex) {
             Logger.getLogger(RemoverKeyGrdAction.class.getName()).log(Level.SEVERE, null, ex);
         }
