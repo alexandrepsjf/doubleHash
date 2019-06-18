@@ -150,11 +150,24 @@ public class TabelaHash {
     }
 
     public void limpa() {
-        No[] arrayTemp = array.clone();
-       this.criaArray(arrayTemp.length);
+        No[] arrayTemp = new No[array.length];
+        for (int l = 0; l < arrayTemp.length; l++) {
+            arrayTemp[l] = new No();
+            arrayTemp[l].setPosicao(l);
+        }
+        for (int i = 0; i < array.length; i++) {
+            if (array[i].key > 0) {
+                arrayTemp[i].key=array[i].key;
+            }
+        }
+        for (int j = 0; j < array.length; j++) {
+            array[j].key=0;
+            array[j].valor="";
+        }
         for (int k = 0; k < arrayTemp.length; k++) {
+            ocupacao=0;
             if (arrayTemp[k].key > 0) {
-                this.insert(arrayTemp[k].key);
+                insert(arrayTemp[k].key);
             }
         }
     }
