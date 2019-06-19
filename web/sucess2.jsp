@@ -54,7 +54,28 @@ on Libraries node in Projects view can be used to add the JSTL 1.1 library.
     </head>
 
     <body class="white-text">  
+ <nav id="nav" class="navbar nav-transparent">
+            <div class="container">
 
+                <div class="navbar-header">
+                    <!-- Logo -->
+                    <div class="navbar-brand">
+                        <a href="index.jsp">
+                            <img class="logo" src="img/inter.png" alt="logo">
+                            <img class="logo-alt" src="img/inter.png" alt="logo">
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+
+                    <!-- Collapse nav button -->
+                    <div class="nav-collapse">
+                        <span></span>
+                    </div>
+                    <!-- /Collapse nav button -->
+                </div>
+
+            </div>
+        </nav>
         <div class="container">
             <div class=" white-text">
                 <!-- home content -->

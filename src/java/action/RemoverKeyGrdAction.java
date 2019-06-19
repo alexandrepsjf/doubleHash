@@ -24,10 +24,10 @@ public class RemoverKeyGrdAction implements Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int key = Integer.parseInt(request.getParameter("key"));
-        No result = TabelaHash.getInstance().get(key);
+        No result = TabelaHash.getInstance().remove(key);
         String resultado = "";
         if (result != null) {
-            resultado = "A chave foi localizada na posição " + result.getPosicao() + " e com histórico de colisões : " + result.getValor();
+            resultado = "A chave foi localizada na posição " + result.getPosicao() + "<br> e com histórico de colisões : " + result.getValor();
         } else {
             resultado = "Chave não localizada";
         }
@@ -37,7 +37,7 @@ public class RemoverKeyGrdAction implements Action {
         request.getSession().setAttribute("array", TabelaHash.getInstance().getArray());
 
         try {
-            request.getRequestDispatcher("resultado2 .jsp").forward(request, response);
+            request.getRequestDispatcher("resultado2.jsp").forward(request, response);
         } catch (ServletException ex) {
             Logger.getLogger(RemoverKeyGrdAction.class.getName()).log(Level.SEVERE, null, ex);
         }

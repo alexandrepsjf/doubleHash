@@ -27,7 +27,7 @@ public class RemoverKeyPeqAction implements Action {
         No result = TabelaHash.getInstance().remove(key);
         String resultado = "";
         if (result != null) {
-            resultado = "A chave foi localizada na posição " + result.getPosicao() + " e com histórico de colisões : " + result.getValor();
+            resultado = "A chave foi localizada na posição " + result.getPosicao() + "<br> e com histórico de colisões : " + result.getValor();
         } else {
             resultado = "Chave não localizada";
         }
